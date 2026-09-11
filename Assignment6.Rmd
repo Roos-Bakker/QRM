@@ -63,6 +63,7 @@ We encourage you to keep your code blocks, printing statements, and final answer
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies <- read.delim("movies4.tsv", sep = "\t", header = TRUE)
 
 ```
 
