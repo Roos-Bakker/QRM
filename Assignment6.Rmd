@@ -65,22 +65,45 @@ We encourage you to keep your code blocks, printing statements, and final answer
 #WRITE YOUR CODE HERE
 movies <- read.delim("movies4.tsv", sep = "\t", header = TRUE)
 
+#number observations
+nrow(movies)
+#number of variables 
+ncol(movies)
+
+head(movies)
+str(movies)
+summary (movies)
+
+#number of subjects 
+nrow(movies)
+##checked if all observations are different
+length(unique(movies$title))
+
 ```
 
 **Your Answer:**
 
-Write your response here.
+The dataset contains 808 observations and 19 variable. A subject is a individual movie and each observation corresponds to a movie, identified by the variable 'title'. Since there is no recurrence of the same movie name, the number of subjects is equal to the number of observations. (which is 808)
 
 2. Which of the following types of variables are present in your data set? (i) nominal; (ii) ordinal; (iii); continuous; (iv) discrete. If present, name one example of such a variable present in your data set. \textbf{[4 points]}
 
 ```{r answer 2}
 #WRITE YOUR CODE HERE
-
+##checking the variables
+str(movies)
 ```
 
 **Your Answer:**
 
-Write your response here.
+the following types of variables are present in this data set: 
+- Nominal: 
+Yes, for example the variable genre or language which are organized by category without a specific order. 
+- Ordinal:
+Yes, for example the variable release_month (stored as a number but represents a month). This gives it a way to be orderd by category but it doesn't carry the same quantitative meaning as the release_year, since its more about order instead of an exact measurable gap.
+- Continuous:
+Yes, for example the variable budget (which displays the amount of money, with decimals).
+-Discrete: 
+Yes, for example with the variable vote_coun (which shows a variable that is countable, in this case the number of votes.)
 
 3. A movie studio wants to know which types of movies give maximal revenue. Perform the following steps to provide the movie studio with an analysis which corresponds to their request:
 
