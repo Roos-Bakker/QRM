@@ -123,72 +123,98 @@ Each week consists of 1, 2, or 3 subquestions. The total amount of points you ca
 ```{r}
 
 #WRITE YOUR CODE HERE
+summary(movies$revenue)
+mean(movies$revenue)
+median(movies$revenue)
+max(movies$revenue)
+min(movies$revenue)
 
 ```
-
 **Your Answer:**
-
-Write your formulated response here.
+the mean revenue is $82,727,885 and the median revenue is $14,560,504. The maximum revenue is $1,519,557,910 and the minimum revenue is $0
 
 *Step b*
-
 ```{r}
 
 #WRITE YOUR CODE HERE
+##highest revenue 
+movies[which.max(movies$revenue), c("title", "revenue")]
+##lowest revenue
+movies[which.min(movies$revenue), c("title","revenue")]
 
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+The movie which has the highest revenue is "The Avengers" with a revenue of $1519557910. The movie with the lowest revenue is "The Oogieloves in the Big Balloon Adventure" which has a revenue of $0.
 
 *Step c*
-
+c. Create a histogram of the variable revenue. Make sure it has an appropriate title, and appropriate titles and labels for the x- and y-axis. Describe the shape of the histogram. What does this tell you about the nature of making money in the movies industry? \textbf{[2 points]}
 ```{r}
 
 #WRITE YOUR CODE HERE
-
+hist(movies$revenue, 
+     main= "Movie Revenue",
+     xlab= "Revenue (in dollars)", 
+     ylab= "Frequency",
+     col="pink")
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+Revenue data is mostly right-skewed since most movies have a low revenue and only a few have a extremely high revenue. This is shown in the histogram with a large bar at the start and which thins out to just a couple movies at the end of the graph.
+The graph suggests that the revenue is uneavenly distributed in the filmindustry with a big portion of movies earning way less than the big movies, and needing a hit to earn a lot of revenue. 
 
 *Step d*
-
 ```{r}
 
 #WRITE YOUR CODE HERE
+movies$log_revenue <-log(movies$revenue)
 
+##movies with revenue 0
+sum(movies$revenue==0)
+mean(movies$log_revenue)
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+There are 257 movies with a revenue of 0. R gives -Inf as a response since the logarithm of 0 is undefined and approaching a negative infinity. This causes the entire mean to become -Inf because of the presence of these -Inf values (and making it not interpretable)
 
 *Step e*
-
 ```{r}
 
 #WRITE YOUR CODE HERE
+movies$log_revenue[movies$revenue==0] <- NA
+mean(movies$log_revenue, na.rm=TRUE)
+
+hist(movies$log_revenue,
+     main= "Log Revenue",
+     xlab= "Log (Revenue)",
+     ylab= "Frequency", 
+     col= "pink")
+
 
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+The mean of the log revenue is now 17.27957, after replacing the movies with zero revnue with NA and excluding these from the calculation with na.rm=TRUE.
 
 *Step f*
-
+f. For the variables revenue and log of revenue calculate their skewness and kurtosis. How do these numbers relate to the shape of the histograms that you estimated under d.) and e.)? \textbf{[2 points]}
 ```{r}
 
 #WRITE YOUR CODE HERE
+#to run this code: install.packages("moments")
+library(moments)
+skewness(movies$revenue)
+kurtosis(movies$revenue)
 
+skewness(movies$log_revenue, na.rm=TRUE)
+kurtosis(movies$log_revenue, na.rm=TRUE)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Revenue has a skewness of 3.90 and a kurtosis of 22.38. Both numbers are higher then expected from a normal distribution which matches the histogram from step c (most movies earn a little and a couple movies earn way more). This pulls the distribution far to the right and creates a long tail and extreme outliers. 
+
+However, with the log the skewness is -1.95 and the kurtosis 10.95 which is far closer to the normal distribution values (0 and around 3). This fits the more symmetric histogram from step e. So the log transformation reduced the skewness and kurtosis while still not being perfectly normal.
 
 # Week 2 
 1 Is your dataset movies4.tsv the full population, or is it a sample of a larger population? If the latter, how would you describe the full population? \textbf{[4 points]}
