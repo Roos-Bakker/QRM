@@ -259,44 +259,65 @@ A random sample of 25 was drawn with the mean of 6.016 for the vote_average. Thi
 
 ```{r}
 #WRITE YOUR CODE HERE
+##fixes random generator, makes the sample reproducible 
+set.seed(123)
 
+sample_means <-numeric(100)
+
+for (i in 1:100){
+  temp_sample <-movies[sample(nrow(movies),25), ]
+  sample_means[i] <- mean(temp_sample$vote_average)
+}
+head(sample_means)
 ```
 
 **Your Answer:**
+With a loop was used to draw 100 samples of 25 movies each and the mean of vote_average was calculated and stored for each sample of the sample_means. The first six values of this vector are 6.016, 6.172,5.856,6.112, 6.016, 5.696.
 
-Write your formulated response here.
 
 *Step d*
 
 ```{r}
 #WRITE YOUR CODE HERE
+summary(sample_means)
+mean(sample_means)
+sd(sample_means)
+
+hist(sample_means,
+     main = "Sample Means", 
+     xlab = "Sample Mean of vote_average",
+     ylab = "Frequency",
+     col = "pink")
 
 ```
-
 **Your Answer:**
-
-Write your formulated response here.
+The mean of sample_mean is 6.046, which is close to the population mean of vote_average (6.04) found in step a. The standard deviation of sample_means is 0.221, representing the standard error of the sampling distribution. 
+The histogram of sample_means shows an approximately symmetric distribution centered around the population mean.This is consistent with the Central Limit Theorem, which says that the distribution of the sample means becomes more normal as the nu,ber of samples increases, even when the underlying variable itself is not perfectly normally distributed. 
 
 *Step e*
 
-**Your Answer:**
-
-Write your formulated response here.
 
 3. Is there a variable in your data set which you would expect to follow a discrete uniform distribution? Explain, without looking at the data, why you expect this data to be discrete uniform. If the data would indeed follow a discrete uniform distribution, what would you expect the mean and standard deviation of this variable to be? Next, plot a histogram of the variable, and plot an appropriate discrete uniform distribution on top of this histogram. Comment whether the variable indeed follows this expected distribution. If the distribution deviates from the discrete uniform distribution, explain why this is the case. \textbf{[6 points]}
 
 **Your Answer:**
 
-Write your formulated response here.
-
 ```{r}
 #WRITE YOUR CODE HERE
+population_mean <-mean(movies$vote_average)
+population_sd <- sd(movies$vote_average)
 
+n<-25 
+expected_value <- population_mean
+standard_error <-population_sd/ sqrt(n)
+
+expected_value
+standard_error
 ```
+
 
 **Your Answer:**
 
-Write your formulated response here.
+According to the Central Limit Theorem, the sampling distribution of the mean of vote_average for samples of size 25 is around normal (with expected value to the equal population mean (6.039) and a standard deviation (0.237) close to the results found in d (6.046 and 0.221).The small differences can be explained by the number of samples (100 in comparison with infinite number of samples). With more simulated samples, the emperical values would be expected to become even closer to the theoretical CLT predictions. 
 
 # Week 3 
 
