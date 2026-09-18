@@ -221,7 +221,7 @@ However, with the log the skewness is -1.95 and the kurtosis 10.95 which is far 
 
 *Your answer here:*
 
-Write your formulated response here.
+This dataset is a sample of a larger population, not the full population, because the set only contains 808 movies which are not all of the movies which are produced in history. The full population would be more like all commercially released films, mostly English from 1990 to 2016, from which data is available. 
 
 
 2 For this question, you will assume that your data set is the full population. 
@@ -233,26 +233,27 @@ d.	Summarize and make a histogram of sample_means. What is the mean, standard de
 e. Using the formulas of the *Central Limit Theorem*, give the distribution of the sample mean of vote_average in a sample of 25 movies from your population (including its expected value and standard deviation). How do these values compare to your answers at d.)? \textbf{[2 points]}
 
 *Step a*
-
+a.	What is the mean of the variable vote_average in your data set? \textbf{[2 points]
 ```{r}
 #WRITE YOUR CODE HERE
-
+mean(movies$vote_average)
 ```
-
 **Your Answer:**
 
-Write your formulated response here.
+Assuming that the dataset represents the full population, the population mean of vote_average is 6.04. 
 
 *Step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+##fixes random number generator, makes the sample reproducible
+set.seed(123)
+movies_sample <-movies[sample(nrow(movies),25),]
+mean(movies_sample$vote_average)
 ```
-
 **Your Answer:**
+A random sample of 25 was drawn with the mean of 6.016 for the vote_average. This is very close to the population mean from step a. The difference of 0.024 reflects the normal sampling variability and wont match the true population mean but will be quite representative for such a small sample. 
 
-Write your formulated response here.
 
 *Step c*
 
