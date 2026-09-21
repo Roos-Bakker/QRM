@@ -496,12 +496,18 @@ frame are a random sample of a larger population of movies.
 ```{r}
 #WRITE YOUR CODE HERE
 
-
+t.test(movies$revenue, conf.level=0.90)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The 90% confidence interval for the mean of revenue is [\$72,731,406 ,
+\$92,724,364]. This means that samples of this size (n=808) are drawn
+repeatedly and for every time a confidence interval is drawn, it would
+be expected that 90% of these intervals contain the true population mean
+of revenue. Based on this sample that's drawn, it can be said with a 90%
+confidence that the true population mean revenue lies between
+\$72,731,406 and \$92,724,364.
 
 2
 
