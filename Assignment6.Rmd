@@ -159,7 +159,7 @@ The following types of variables are present in this data set:
 - Nominal: Yes, for example the variable genre or language which are
   organized by category without a specific order.
 
--  Ordinal: Yes, for example the variable release_month (stored as a
+- Ordinal: Yes, for example the variable release_month (stored as a
   number but represents a month). This gives it a way to be ordered by
   category but it doesn't carry the same quantitative meaning as the
   release_year, since its more about order instead of an exact
