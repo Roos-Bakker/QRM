@@ -559,13 +559,25 @@ prop.test(x=table_gender["male"], n=sum(table_gender),p=0.5)
 
 **Your Answer:**
 
-The null hypothesis (H0): The probability that a movie is directed by a male director is equal (so 0.5).
+The null hypothesis (H0): The probability that a movie is directed by a
+male director is equal (so 0.5).
 
-alternative hypothesis (H1): the probability that a movie is directed by a male director is not equal to 0.5.
+alternative hypothesis (H1): the probability that a movie is directed by
+a male director is not equal to 0.5.
 
 significance level=0.5
 
-This hypothesis was tested with a one-sample proportions test. This sample consisted of 765 movies(with a known director gender), where 685 movies are directed by a male director.This gives a sample proportion of 0.895 and yields a statistic of X-squared of 476.88 with a p-value< 2.2e-16 with a 95% confidence interval of [0.871, 0.916]. Since the p-value is smaller than the significance level of 0.05 the null hypothesis is rejected.This provides strong evidence that the probability of a movie being directed by a male director is equal to 0.5 and that the data suggest that male directors are more common than female directors in this data set.
+This hypothesis was tested with a one-sample proportions test. This
+sample consisted of 765 movies(with a known director gender), where 685
+movies are directed by a male director.This gives a sample proportion of
+0.895 and yields a statistic of X-squared of 476.88 with a p-value\<
+2.2e-16 with a 95% confidence interval of [0.871, 0.916]. Since the
+p-value is smaller than the significance level of 0.05 the null
+hypothesis is rejected.This provides strong evidence that the
+probability of a movie being directed by a male director is equal to 0.5
+and that the data suggest that male directors are more common than
+female directors in this data set.
+
 *step c*
 
 ```{r}
@@ -577,7 +589,10 @@ var_male ; var_female
 
 **Your Answer:**
 
-Write your formulated response here.
+The variance of revenue is in million of dollars. It is approximalety
+31,137.62 for movies with a director that is a male and approximately
+13,224.54 for movies with a female director. With a male director is the
+variance larger.
 
 *step d*
 
