@@ -250,6 +250,7 @@ hist(movies$revenue,
      main= "Movie Revenue",
      xlab= "Revenue (in dollars)", 
      ylab= "Frequency",
+     col="hotpink")
 ```
 
 **Your Answer:** The revenue data is mostly right-skewed since most
@@ -289,6 +290,7 @@ hist(movies$log_revenue,
      main= "Log Revenue",
      xlab= "Log (Revenue)",
      ylab= "Frequency", 
+     col= "hotpink")
 
 
 ```
@@ -430,6 +432,7 @@ hist(sample_means,
      main = "Sample Means", 
      xlab = "Sample Mean of vote_average",
      ylab = "Frequency",
+     col = "hotpink")
 
 ```
 
@@ -536,6 +539,7 @@ d.  Assume that the variance of revenue for movies with a male director
 
 ```{r}
 #WRITE YOUR CODE HERE
+table(movies$director_gender)
 
 ```
 
