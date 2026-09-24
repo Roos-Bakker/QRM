@@ -550,7 +550,11 @@ Write your formulated response here.
 
 ```{r}
 #WRITE YOUR CODE HERE
+table_gender<-table(movies$director_gender)
+print(table_gender)
+class(table_gender)
 
+prop.test(x=table_gender["male"], n=sum(table_gender),p=0.5)
 ```
 
 **Your Answer:**
