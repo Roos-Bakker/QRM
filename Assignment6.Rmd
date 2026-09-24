@@ -564,8 +564,10 @@ Write your formulated response here.
 *step c*
 
 ```{r}
-#WRITE YOUR CODE HERE
-
+movies$revenue_m <- movies$revenue / 1e6
+var_male <- var(movies$revenue_m[movies$director_gender == "male"], na.rm = TRUE)
+var_female <- var(movies$revenue_m[movies$director_gender == "female"], na.rm = TRUE)
+var_male ; var_female
 ```
 
 **Your Answer:**
