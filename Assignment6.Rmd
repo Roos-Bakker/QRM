@@ -626,8 +626,7 @@ plot(revenue_by_year$release_year, revenue_by_year$revenue,
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+A scatter plot was created showing the mean revenue per release year and the plot does not show a clear consistent trend of increasing or decreasing over time but fluctuates up and down from year to year. Some of the highest average revenue occur around the 1990s and around 2015 in the dataset, while many of the years in between show lower and more similair average revenues. This shows that the average revenues has not clearly increased over time, and yearly averages appear to be more strongly influenced by a small number of high-or low revenue movies from that specifical year than a general industry wide trend. 
 
 *step b*
 
