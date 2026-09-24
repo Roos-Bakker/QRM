@@ -159,7 +159,7 @@ The following types of variables are present in this data set:
 - Nominal: Yes, for example the variable genre or language which are
   organized by category without a specific order.
 
--  Ordinal: Yes, for example the variable release_month (stored as a
+- Ordinal: Yes, for example the variable release_month (stored as a
   number but represents a month). This gives it a way to be ordered by
   category but it doesn't carry the same quantitative meaning as the
   release_year, since its more about order instead of an exact
@@ -539,6 +539,7 @@ d.  Assume that the variance of revenue for movies with a male director
 
 ```{r}
 #WRITE YOUR CODE HERE
+table(movies$director_gender)
 
 ```
 
@@ -576,6 +577,7 @@ Write your formulated response here.
 ```
 
 **Your Answer:**
+To test whether the variance of revenue differs between movies with a female director and movies with a male director, I created the following hypothesis test. Firstly, I did a Null hypothesis: variance of revenue for movies with female director = variance of revenue for movies with male 
 
 Write your formulated response here.
 
