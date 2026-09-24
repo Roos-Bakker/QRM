@@ -250,7 +250,7 @@ hist(movies$revenue,
      main= "Movie Revenue",
      xlab= "Revenue (in dollars)", 
      ylab= "Frequency",
-     col="pink")
+     col="hotpink")
 ```
 
 **Your Answer:** The revenue data is mostly right-skewed since most
@@ -290,7 +290,7 @@ hist(movies$log_revenue,
      main= "Log Revenue",
      xlab= "Log (Revenue)",
      ylab= "Frequency", 
-     col= "pink")
+     col= "hotpink")
 
 
 ```
@@ -432,7 +432,7 @@ hist(sample_means,
      main = "Sample Means", 
      xlab = "Sample Mean of vote_average",
      ylab = "Frequency",
-     col = "pink")
+     col = "hotpink")
 
 ```
 
@@ -566,6 +566,7 @@ alternative hypothesis (H1): the probability that a movie is directed by a male 
 significance level=0.5
 
 This hypothesis was tested with a one-sample proportions test. This sample consisted of 765 movies(with a known director gender), where 685 movies are directed by a male director.This gives a sample proportion of 0.895 and yields a statistic of X-squared of 476.88 with a p-value< 2.2e-16 with a 95% confidence interval of [0.871, 0.916]. Since the p-value is smaller than the significance level of 0.05 the null hypothesis is rejected.This provides strong evidence that the probability of a movie being directed by a male director is equal to 0.5 and that the data suggest that male directors are more common than female directors in this data set.
+
 *step c*
 
 ```{r}
@@ -608,7 +609,16 @@ c.  If you look closely at the resulting plot in b.), you will probably
 
 ```{r}
 #WRITE YOUR CODE HERE
+revenue_by_year <-aggregate(revenue~ release_year, data=movies,FUN=mean)
 
+head(revenue_by_year)
+
+plot(revenue_by_year$release_year, revenue_by_year$revenue,
+     main= "Mean Movie revenue by release year",
+     xlab= "Release year",
+     ylab="Mean revenue (in dollars)",
+     pch=19,
+     col= "hotpink")
 ```
 
 **Your Answer:**
