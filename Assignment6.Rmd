@@ -584,11 +584,25 @@ Write your formulated response here.
 
 ```{r}
 #WRITE YOUR CODE HERE
+revenue_female <- movies$revenue_m[which(movies$director_gender == "female")]
+revenue_male   <- movies$revenue_m[which(movies$director_gender == "male")]
 
+n_female <- length(revenue_female)
+s2_female <- var(revenue_female)
+sigma2_male <- var(revenue_male)
+
+chi2_stat <- (n_female - 1) * s2_female / sigma2_male
+df_f <- n_female - 1
+
+p_value <- 2 * min(pchisq(chi2_stat, df_f), 1 - pchisq(chi2_stat, df_f))
+
+chi2_stat
+df_f
+p_value
 ```
 
 **Your Answer:**
-To test whether the variance of revenue differs between movies with a female director and movies with a male director, I created the following hypothesis test. Firstly, I did a Null hypothesis: variance of revenue for movies with female director = variance of revenue for movies with male 
+To test whether the variance of revenue (in millions of dollars) differs between movies with a female director and movies with a male director, I created the following test. I ran a chi-square test voor single variance, treating the male variance as known and fixed value with no sampling uncertainty. I also did a null hypothesis: the variance of revenue for female-directed movies equals the variance of male-directed movies. The alternative hypothesis we did means that the variances are nog equal with a significance level of 0.5.
 
 Write your formulated response here.
 
