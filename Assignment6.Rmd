@@ -250,7 +250,6 @@ hist(movies$revenue,
      main= "Movie Revenue",
      xlab= "Revenue (in dollars)", 
      ylab= "Frequency",
-     col="pink")
 ```
 
 **Your Answer:** The revenue data is mostly right-skewed since most
@@ -290,7 +289,6 @@ hist(movies$log_revenue,
      main= "Log Revenue",
      xlab= "Log (Revenue)",
      ylab= "Frequency", 
-     col= "pink")
 
 
 ```
@@ -432,7 +430,6 @@ hist(sample_means,
      main = "Sample Means", 
      xlab = "Sample Mean of vote_average",
      ylab = "Frequency",
-     col = "pink")
 
 ```
 
@@ -567,6 +564,7 @@ a male director is not equal to 0.5.
 
 significance level=0.5
 
+<<<<<<< HEAD
 This hypothesis was tested with a one-sample proportions test. This
 sample consisted of 765 movies(with a known director gender), where 685
 movies are directed by a male director.This gives a sample proportion of
@@ -577,6 +575,9 @@ hypothesis is rejected.This provides strong evidence that the
 probability of a movie being directed by a male director is equal to 0.5
 and that the data suggest that male directors are more common than
 female directors in this data set.
+=======
+This hypothesis was tested with a one-sample proportions test. This sample consisted of 765 movies(with a known director gender), where 685 movies are directed by a male director.This gives a sample proportion of 0.895 and yields a statistic of X-squared of 476.88 with a p-value< 2.2e-16 with a 95% confidence interval of [0.871, 0.916]. Since the p-value is smaller than the significance level of 0.05 the null hypothesis is rejected.This provides strong evidence that the probability of a movie being directed by a male director is equal to 0.5 and that the data suggest that male directors are more common than female directors in this data set.
+>>>>>>> e53b41379d18ce853d43795c934ad75be68da546
 
 *step c*
 
@@ -602,6 +603,7 @@ variance larger.
 ```
 
 **Your Answer:**
+To test whether the variance of revenue differs between movies with a female director and movies with a male director, I created the following hypothesis test. Firstly, I did a Null hypothesis: variance of revenue for movies with female director = variance of revenue for movies with male 
 
 Write your formulated response here.
 
@@ -625,12 +627,20 @@ c.  If you look closely at the resulting plot in b.), you will probably
 
 ```{r}
 #WRITE YOUR CODE HERE
+revenue_by_year <-aggregate(revenue~ release_year, data=movies,FUN=mean)
 
+head(revenue_by_year)
+
+plot(revenue_by_year$release_year, revenue_by_year$revenue,
+     main= "Mean Movie revenue by release year",
+     xlab= "Release year",
+     ylab="Mean revenue (in dollars)",
+     pch=19,
+     col= "hotpink")
 ```
 
 **Your Answer:**
-
-Write your formulated response here.
+A scatter plot was created showing the mean revenue per release year and the plot does not show a clear consistent trend of increasing or decreasing over time but fluctuates up and down from year to year. Some of the highest average revenue occur around the 1990s and around 2015 in the dataset, while many of the years in between show lower and more similair average revenues. This shows that the average revenues has not clearly increased over time, and yearly averages appear to be more strongly influenced by a small number of high-or low revenue movies from that specifical year than a general industry wide trend. 
 
 *step b*
 
