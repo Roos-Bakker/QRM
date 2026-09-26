@@ -626,19 +626,9 @@ Write your formulated response here.
 
 3
 
-a.  Create a scatter plot with year on the x axis and mean of revenue
-    within that year on the y-axis. Make sure it has an appropriate
-    title, and appropriate titles and labels for the x- and y-axis. Is
-    revenue of movies increasing or decreasing over time?
-    \textbf{[3 points]}
-b.  Recreate the scatter plot with year on the x axis and mean_revenue
-    on the y-axis, but now add bars around each point, indicating the
-    95% confidence interval. \textbf{[3 points]}
-c.  If you look closely at the resulting plot in b.), you will probably
-    see that the confidence intervals in some years are wider than in
-    other years. What are some possible reasons that a confidence
-    interval in a given year can be wide? Can you verify this using your
-    data? \textbf{[4 points]}
+a.  Create a scatter plot with year on the x axis and mean of revenue within that year on the y-axis. Make sure it has an appropriate title, and appropriate titles and labels for the x- and y-axis. Is revenue of movies increasing or decreasing over time? \textbf{[3 points]}
+b.  Recreate the scatter plot with year on the x axis and mean_revenue on the y-axis, but now add bars around each point, indicating the95% confidence interval. \textbf{[3 points]}
+c.  If you look closely at the resulting plot in b.), you will probably see that the confidence intervals in some years are wider than in other years. What are some possible reasons that a confidence interval in a given year can be wide? Can you verify this using your data? \textbf{[4 points]}
 
 *step a*
 
@@ -657,16 +647,36 @@ plot(revenue_by_year$release_year, revenue_by_year$revenue,
 ```
 
 **Your Answer:**
-A scatter plot was created showing the mean revenue per release year and the plot does not show a clear consistent trend of increasing or decreasing over time but fluctuates up and down from year to year. Some of the highest average revenue occur around the 1990s and around 2015 in the dataset, while many of the years in between show lower and more similair average revenues. This shows that the average revenues has not clearly increased over time, and yearly averages appear to be more strongly influenced by a small number of high-or low revenue movies from that specifical year than a general industry wide trend. 
+A scatter plot was created showing the mean revenue per release year and the plot does not show a clear consistent trend of increasing or decreasing over time but fluctuates up and down from year to year. Some of the highest average revenue occur around the 1990s and around 2015 in the dataset, while many of the years in between show lower and more similar average revenues. This shows that the average revenues has not clearly increased over time, and yearly averages appear to be more strongly influenced by a small number of high-or low revenue movies from that specific year than a general industry wide trend. 
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+mean_revenue <- aggregate(revenue ~ release_year, data=movies, FUN=mean)
+sd_revenue <- aggregate(revenue ~ release_year, data=movies, FUN=sd)
+n_revenue <- aggregate(revenue ~ release_year, data=movies, FUN=length)
 
+se <- sd_revenue$revenue / sqrt(n_revenue$revenue)
+lower <- mean_revenue$revenue - 1.96*se
+upper <- mean_revenue$revenue + 1.96*se
+
+plot(mean_revenue$release_year, mean_revenue$revenue,
+main="Mean movie revenue by release year with 95% confidence interval",
+     xlab="Release year",
+     ylab="Mean revenue (in dollars)",
+     pch=19,
+     col="hotpink",
+     cex.main=0.9,
+     ylim=c(min(lower), max(upper)))
+
+arrows(mean_revenue$release_year, lower,
+       mean_revenue$release_year, upper,
+       angle=90, code=3, length=0.05, col="hotpink")
 ```
 
 **Your Answer:**
+In this scatter plot we create two extra steps on top of our first scatter plot. We calculate the standard deviation and we count the amount of movies per year (in addition to the mean) which lets us calculate the standard error (how uncertain the mean is). After that, we get the upper and lower bounds of the confidence interval, which you can see in the scatter plot (with caps on both sides to make it more clear).
 
 Write your formulated response here.
 
