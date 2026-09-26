@@ -545,7 +545,7 @@ table(movies$director_gender)
 
 **Your Answer:**
 
-Write your formulated response here.
+This code counts how many times each value (male and female) appears in the director_gender column. The result shows 80 movies with a female director and 685 movies with a male director.
 
 *step b*
 
@@ -594,20 +594,33 @@ var_male ; var_female
 
 **Your Answer:**
 
-The variance of revenue is in million of dollars. It is approximalety
-31,137.62 for movies with a director that is a male and approximately
-13,224.54 for movies with a female director. With a male director is the
-variance larger.
+The variance of revenue is in million of dollars. It is approximalety 31,137.62 for movies with a director that is a male and approximately 13,224.54 for movies with a female director. With a male director is the variance larger.
 
 *step d*
 
 ```{r}
 #WRITE YOUR CODE HERE
+revenue_female <- movies$revenue_m[which(movies$director_gender == "female")]
+revenue_male   <- movies$revenue_m[which(movies$director_gender == "male")]
 
+n_female <- length(revenue_female)
+s2_female <- var(revenue_female)
+sigma2_male <- var(revenue_male)
+
+chi2_stat <- (n_female - 1) * s2_female / sigma2_male
+df_f <- n_female - 1
+
+p_value <- 2 * min(pchisq(chi2_stat, df_f), 1 - pchisq(chi2_stat, df_f))
+
+chi2_stat
+df_f
+p_value
 ```
 
 **Your Answer:**
-To test whether the variance of revenue differs between movies with a female director and movies with a male director, I created the following hypothesis test. Firstly, I did a Null hypothesis: variance of revenue for movies with female director = variance of revenue for movies with male 
+
+This code splits revenue (in millions) into two groups based on director gender and then calculates the sample size and variance for female-directed movies and the variance for male-directed movies (treated as a known, fixed value). After that, the chi-square test and its degrees of freedom are calculated, and after that the two-sided p-value is calculated.
+The result shows a test statistic of 33.55229 with 79 degrees of freedom and a p-value of 3.226983e-06. This p-value is way smaller than the significance level of 0.05 which means that the null hypothesis is rejected. The variance of revenue for female-directed movies differs (is lower) from the variance for movies with a male director.
 
 Write your formulated response here.
 
