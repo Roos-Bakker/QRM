@@ -684,8 +684,17 @@ Write your formulated response here.
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+verify <- data.frame(release_year = mean_revenue$release_year,
+                      n = n_revenue$revenue,
+                      sd = sd_revenue$revenue,
+                      ci_width = upper - lower)
+verify[order(-verify$ci_width), ]
 ```
+
+This code creates a table which shows the number of movies, standard deviation of revenue, and the width of the confidence interval for each year, sorted from widest to narrowest. This makes it easy to check whether the years with the widest intervals are also the years with a small sample size and/or a large standard deviation. 
+There are two main reasons why confidence intervals can be wide in a specific year:
+1) Small sample size (this leads to a low n): if only a couple of movies were released in a specific year, the mean is based on less data, which makes it less reliable. This could lead to a wider confidence interval. A good example for this reason is year 1990. In this year, n = 9 (relatively small sample size), with a very wide confidence interval: 244988199. This supports the idea that a small sample size leads to a wider interval. 
+2) High variability in revenue (this leads to a high sd): in a given year, movies can be hits or big flops. This leads to revenue values which are spread far apart. This large spread could also make the confidence interval wider. A good example for this reason is year 2012. In this year, n = 51 (relatively large sample size), which could lead to a small interval. However, the standard deviation is 309479166, and the confidence interval is still 169876145. This shows that high variability in revenue can lead to a wide confidence interval even though the sample size is big.
 
 # Week 4
 
