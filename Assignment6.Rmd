@@ -393,8 +393,7 @@ movies_sample <-movies[sample(nrow(movies),25),]
 mean(movies_sample$vote_average)
 ```
 
-**Your Answer:** 
-A random sample of 25 was drawn with the mean of 6.016
+**Your Answer:** A random sample of 25 was drawn with the mean of 6.016
 for the vote_average. This is very close to the population mean from
 step a. The difference of 0.024 reflects the normal sampling variability
 and wont match the true population mean but will be quite representative
@@ -416,8 +415,7 @@ for (i in 1:100){
 head(sample_means)
 ```
 
-**Your Answer:** 
-With a loop was used to draw 100 samples of 25 movies
+**Your Answer:** With a loop was used to draw 100 samples of 25 movies
 each and the mean of vote_average was calculated and stored for each
 sample of the sample_means. The first six values of this vector are
 6.016, 6.172,5.856,6.112, 6.016, 5.696.
@@ -501,22 +499,43 @@ the theoretical CLT predictions.
     # true mean and standard deviation in the data
     mean(movies$release_day,na.rm = TRUE)
     sd(movies$release_day,na.rm = TRUE) 
+
+    #histogram with discrete uniform overlay
+    hist(movies$release_day,
+         main= "Release Day with discrete uniform overlay",
+         xlab= "Day of the month",
+         ylab= "Frequency",
+         col="pink",
+         breaks= 31)
+
+    expected_freq <- sum(!is.na(movies$release_day))/31
+    abline(h=expected_freq,col="blue",lwd=2,lty=2)
+
     ```
 
 **Your Answer:**
 
 We would expect that the variable release_day follows a discrete uniform
 distribution. Based on factors (such as season and holiday periods) film
-studios choose a release date, but there is absolutely no reason to
-assume that a specific date in the month makes a real difference. It
-does not matter if they choose the 18th or the 19th. Because of this you
-would expect movies to be distributed fairly across the days of the
-month.
+studios choose a release date, but there is no reason to assume that a
+specific date in the month makes a real difference (for example the 18th
+compared to the 19th). So movies are relatively evenly spread across the
+days.
 
-If we assume that release_day is uniformly distributed over 1 to 31 then
-the mean is: (1 + 31) / 2 = 16 and the standard deviation is
+If release_day is uniform over 1-31, the expected mean would be
+(1+31)/2=16, and the expected sd sqrt(31\^2 -1)/12 ≈ 8.94. The actual
+mean and sd are actually very close to these theoretical values (15.33
+and 8.56).
 
-# Week 3
+However the histogram shows that it is not perfectly uniform, for
+example day 1 has big spike (61 movies) as well as day 15 and 25 which
+stand out above the blue line. There also seems to be a decline from day
+27 to 31, but that's not a real deviation since not all months have
+those days. Only the spikes at day 1, 15 and 25 can be considered as
+real deviation. Studios likely release movies on more memorable 'round'
+dates for marketing reasons than just spreading release dates randomly.
+It looks more like a choice, not a random date, while still matching the
+overall mean and sd from the uniform prediction. \# Week 3
 
 For the next part of the assignment, assume that the movies in your data
 frame are a random sample of a larger population of movies.
@@ -609,10 +628,7 @@ movies are directed by a male director.This gives a sample proportion of
 p-value is smaller than the significance level of 0.05 the null
 hypothesis is rejected.This provides strong evidence that the
 probability of a movie being directed by a male director is not equal to
-0.5 and that the data suggest that male directors are more common than
-female directors in this data set.
-
-*step c*
+0.5 and that male directors are more common. *step c*
 
 ```{r}
 movies$revenue_m <- movies$revenue / 1e6
@@ -623,10 +639,10 @@ var_male ; var_female
 
 **Your Answer:**
 
-The variance of revenue is in million of dollars. It is approximalety
+The variance of revenue is in million of dollars. It is approximately
 31,137.62 for movies with a director that is a male and approximately
-13,224.54 for movies with a female director. With a male director is the
-variance larger.
+13,224.54 for movies with a female director. The variance is larger for
+movies with a male director.
 
 *step d*
 
@@ -663,8 +679,6 @@ null hypothesis is rejected. The variance of revenue for female-directed
 movies differs (is lower) from the variance for movies with a male
 director.
 
-Write your formulated response here.
-
 3
 
 a.  Create a scatter plot with year on the x axis and mean of revenue
@@ -697,8 +711,7 @@ plot(revenue_by_year$release_year, revenue_by_year$revenue,
      col= "hotpink")
 ```
 
-**Your Answer:**
-A scatter plot was created showing the mean revenue per
+**Your Answer:** A scatter plot was created showing the mean revenue per
 release year and the plot does not show a clear consistent trend of
 increasing or decreasing over time but fluctuates up and down from year
 to year. Some of the highest average revenue occur around the 1990s and
@@ -734,16 +747,13 @@ arrows(mean_revenue$release_year, lower,
        angle=90, code=3, length=0.05, col="hotpink")
 ```
 
-**Your Answer:**
-In this scatter plot we create two extra steps on top
+**Your Answer:** In this scatter plot we create two extra steps on top
 of our first scatter plot. We calculate the standard deviation and we
 count the amount of movies per year (in addition to the mean) which lets
 us calculate the standard error (how uncertain the mean is). After that,
 we get the upper and lower bounds of the confidence interval, which you
 can see in the scatter plot (with caps on both sides to make it more
 clear).
-
-Write your formulated response here.
 
 *step c*
 
