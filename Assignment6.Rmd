@@ -4,10 +4,10 @@ subtitle: "Period 1, 2026"
 author: "Sophie Thoolen, Clemence van Gils, Benthe Tromp en Roos Bakker "
 date:  "`r format(Sys.Date(), '%d-%m-%Y')`"
 output:
-  pdf_document:
-    number_sections: true
   html_document:
     df_print: paged
+  pdf_document:
+    number_sections: true
 
 header-includes:
 - "\\setcounter{section}{-1}"
@@ -27,7 +27,7 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, fig.width = 5,fig.height = 3.5)
 ```
 
 # Introduction
@@ -448,17 +448,6 @@ perfectly normally distributed.
 
 *Step e*
 
-3.  Is there a variable in your data set which you would expect to
-    follow a discrete uniform distribution? Explain, without looking at
-    the data, why you expect this data to be discrete uniform. If the
-    data would indeed follow a discrete uniform distribution, what would
-    you expect the mean and standard deviation of this variable to be?
-    Next, plot a histogram of the variable, and plot an appropriate
-    discrete uniform distribution on top of this histogram. Comment
-    whether the variable indeed follows this expected distribution. If
-    the distribution deviates from the discrete uniform distribution,
-    explain why this is the case. \textbf{[6 points]}
-
 **Your Answer:**
 
 ```{r}
@@ -484,6 +473,25 @@ small differences can be explained by the number of samples (100 in
 comparison with infinite number of samples). With more simulated
 samples, the empirical values would be expected to become even closer to
 the theoretical CLT predictions.
+
+3.  Is there a variable in your data set which you would expect to
+    follow a discrete uniform distribution? Explain, without looking at
+    the data, why you expect this data to be discrete uniform. If the
+    data would indeed follow a discrete uniform distribution, what would
+    you expect the mean and standard deviation of this variable to be?
+    Next, plot a histogram of the variable, and plot an appropriate
+    discrete uniform distribution on top of this histogram. Comment
+    whether the variable indeed follows this expected distribution. If
+    the distribution deviates from the discrete uniform distribution,
+    explain why this is the case. \textbf{[6 points]}
+    
+    ```{r}
+#WRITE YOUR CODE HERE
+
+```
+
+**Your Answer:**
+
 
 # Week 3
 
