@@ -595,7 +595,8 @@ var_male ; var_female
 The variance of revenue is in million of dollars. It is approximately
 31,137.62 for movies with a director that is a male and approximately
 13,224.54 for movies with a female director. With a male director is the
-variance considerably larger.
+variance considerably larger, more than twice that of movies with a
+female director.
 
 *step d*
 
