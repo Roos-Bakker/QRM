@@ -545,7 +545,9 @@ table(movies$director_gender)
 
 **Your Answer:**
 
-This code counts how many times each value (male and female) appears in the director_gender column. The result shows 80 movies with a female director and 685 movies with a male director.
+This code counts how many times each value (male and female) appears in
+the director_gender column. The result shows 80 movies with a female
+director and 685 movies with a male director.
 
 *step b*
 
@@ -566,9 +568,8 @@ male director is equal (so 0.5).
 alternative hypothesis (H1): the probability that a movie is directed by
 a male director is not equal to 0.5.
 
-significance level=0.5
+significance level=0.05
 
-<<<<<<< HEAD
 This hypothesis was tested with a one-sample proportions test. This
 sample consisted of 765 movies(with a known director gender), where 685
 movies are directed by a male director.This gives a sample proportion of
@@ -576,12 +577,9 @@ movies are directed by a male director.This gives a sample proportion of
 2.2e-16 with a 95% confidence interval of [0.871, 0.916]. Since the
 p-value is smaller than the significance level of 0.05 the null
 hypothesis is rejected.This provides strong evidence that the
-probability of a movie being directed by a male director is equal to 0.5
-and that the data suggest that male directors are more common than
+probability of a movie being directed by a male director is not equal to
+0.5 and that the data suggest that male directors are more common than
 female directors in this data set.
-=======
-This hypothesis was tested with a one-sample proportions test. This sample consisted of 765 movies(with a known director gender), where 685 movies are directed by a male director.This gives a sample proportion of 0.895 and yields a statistic of X-squared of 476.88 with a p-value< 2.2e-16 with a 95% confidence interval of [0.871, 0.916]. Since the p-value is smaller than the significance level of 0.05 the null hypothesis is rejected.This provides strong evidence that the probability of a movie being directed by a male director is equal to 0.5 and that the data suggest that male directors are more common than female directors in this data set.
->>>>>>> e53b41379d18ce853d43795c934ad75be68da546
 
 *step c*
 
@@ -594,7 +592,10 @@ var_male ; var_female
 
 **Your Answer:**
 
-The variance of revenue is in million of dollars. It is approximalety 31,137.62 for movies with a director that is a male and approximately 13,224.54 for movies with a female director. With a male director is the variance larger.
+The variance of revenue is in million of dollars. It is approximalety
+31,137.62 for movies with a director that is a male and approximately
+13,224.54 for movies with a female director. With a male director is the
+variance larger.
 
 *step d*
 
@@ -619,16 +620,35 @@ p_value
 
 **Your Answer:**
 
-This code splits revenue (in millions) into two groups based on director gender and then calculates the sample size and variance for female-directed movies and the variance for male-directed movies (treated as a known, fixed value). After that, the chi-square test and its degrees of freedom are calculated, and after that the two-sided p-value is calculated.
-The result shows a test statistic of 33.55229 with 79 degrees of freedom and a p-value of 3.226983e-06. This p-value is way smaller than the significance level of 0.05 which means that the null hypothesis is rejected. The variance of revenue for female-directed movies differs (is lower) from the variance for movies with a male director.
+This code splits revenue (in millions) into two groups based on director
+gender and then calculates the sample size and variance for
+female-directed movies and the variance for male-directed movies
+(treated as a known, fixed value). After that, the chi-square test and
+its degrees of freedom are calculated, and after that the two-sided
+p-value is calculated. The result shows a test statistic of 33.55229
+with 79 degrees of freedom and a p-value of 3.226983e-06. This p-value
+is way smaller than the significance level of 0.05 which means that the
+null hypothesis is rejected. The variance of revenue for female-directed
+movies differs (is lower) from the variance for movies with a male
+director.
 
 Write your formulated response here.
 
 3
 
-a.  Create a scatter plot with year on the x axis and mean of revenue within that year on the y-axis. Make sure it has an appropriate title, and appropriate titles and labels for the x- and y-axis. Is revenue of movies increasing or decreasing over time? \textbf{[3 points]}
-b.  Recreate the scatter plot with year on the x axis and mean_revenue on the y-axis, but now add bars around each point, indicating the95% confidence interval. \textbf{[3 points]}
-c.  If you look closely at the resulting plot in b.), you will probably see that the confidence intervals in some years are wider than in other years. What are some possible reasons that a confidence interval in a given year can be wide? Can you verify this using your data? \textbf{[4 points]}
+a.  Create a scatter plot with year on the x axis and mean of revenue
+    within that year on the y-axis. Make sure it has an appropriate
+    title, and appropriate titles and labels for the x- and y-axis. Is
+    revenue of movies increasing or decreasing over time?
+    \textbf{[3 points]}
+b.  Recreate the scatter plot with year on the x axis and mean_revenue
+    on the y-axis, but now add bars around each point, indicating the95%
+    confidence interval. \textbf{[3 points]}
+c.  If you look closely at the resulting plot in b.), you will probably
+    see that the confidence intervals in some years are wider than in
+    other years. What are some possible reasons that a confidence
+    interval in a given year can be wide? Can you verify this using your
+    data? \textbf{[4 points]}
 
 *step a*
 
@@ -646,8 +666,15 @@ plot(revenue_by_year$release_year, revenue_by_year$revenue,
      col= "hotpink")
 ```
 
-**Your Answer:**
-A scatter plot was created showing the mean revenue per release year and the plot does not show a clear consistent trend of increasing or decreasing over time but fluctuates up and down from year to year. Some of the highest average revenue occur around the 1990s and around 2015 in the dataset, while many of the years in between show lower and more similar average revenues. This shows that the average revenues has not clearly increased over time, and yearly averages appear to be more strongly influenced by a small number of high-or low revenue movies from that specific year than a general industry wide trend. 
+**Your Answer:** A scatter plot was created showing the mean revenue per
+release year and the plot does not show a clear consistent trend of
+increasing or decreasing over time but fluctuates up and down from year
+to year. Some of the highest average revenue occur around the 1990s and
+around 2015 in the dataset, while many of the years in between show
+lower and more similar average revenues. This shows that the average
+revenues has not clearly increased over time, and yearly averages appear
+to be more strongly influenced by a small number of high-or low revenue
+movies from that specific year than a general industry wide trend.
 
 *step b*
 
@@ -675,8 +702,13 @@ arrows(mean_revenue$release_year, lower,
        angle=90, code=3, length=0.05, col="hotpink")
 ```
 
-**Your Answer:**
-In this scatter plot we create two extra steps on top of our first scatter plot. We calculate the standard deviation and we count the amount of movies per year (in addition to the mean) which lets us calculate the standard error (how uncertain the mean is). After that, we get the upper and lower bounds of the confidence interval, which you can see in the scatter plot (with caps on both sides to make it more clear).
+**Your Answer:** In this scatter plot we create two extra steps on top
+of our first scatter plot. We calculate the standard deviation and we
+count the amount of movies per year (in addition to the mean) which lets
+us calculate the standard error (how uncertain the mean is). After that,
+we get the upper and lower bounds of the confidence interval, which you
+can see in the scatter plot (with caps on both sides to make it more
+clear).
 
 Write your formulated response here.
 
@@ -691,10 +723,27 @@ verify <- data.frame(release_year = mean_revenue$release_year,
 verify[order(-verify$ci_width), ]
 ```
 
-This code creates a table which shows the number of movies, standard deviation of revenue, and the width of the confidence interval for each year, sorted from widest to narrowest. This makes it easy to check whether the years with the widest intervals are also the years with a small sample size and/or a large standard deviation. 
-There are two main reasons why confidence intervals can be wide in a specific year:
-1) Small sample size (this leads to a low n): if only a couple of movies were released in a specific year, the mean is based on less data, which makes it less reliable. This could lead to a wider confidence interval. A good example for this reason is year 1990. In this year, n = 9 (relatively small sample size), with a very wide confidence interval: 244988199. This supports the idea that a small sample size leads to a wider interval. 
-2) High variability in revenue (this leads to a high sd): in a given year, movies can be hits or big flops. This leads to revenue values which are spread far apart. This large spread could also make the confidence interval wider. A good example for this reason is year 2012. In this year, n = 51 (relatively large sample size), which could lead to a small interval. However, the standard deviation is 309479166, and the confidence interval is still 169876145. This shows that high variability in revenue can lead to a wide confidence interval even though the sample size is big.
+This code creates a table which shows the number of movies, standard
+deviation of revenue, and the width of the confidence interval for each
+year, sorted from widest to narrowest. This makes it easy to check
+whether the years with the widest intervals are also the years with a
+small sample size and/or a large standard deviation. There are two main
+reasons why confidence intervals can be wide in a specific year: 1)
+Small sample size (this leads to a low n): if only a couple of movies
+were released in a specific year, the mean is based on less data, which
+makes it less reliable. This could lead to a wider confidence interval.
+A good example for this reason is year 1990. In this year, n = 9
+(relatively small sample size), with a very wide confidence interval:
+244988199. This supports the idea that a small sample size leads to a
+wider interval. 2) High variability in revenue (this leads to a high
+sd): in a given year, movies can be hits or big flops. This leads to
+revenue values which are spread far apart. This large spread could also
+make the confidence interval wider. A good example for this reason is
+year 2012. In this year, n = 51 (relatively large sample size), which
+could lead to a small interval. However, the standard deviation is
+309479166, and the confidence interval is still 169876145. This shows
+that high variability in revenue can lead to a wide confidence interval
+even though the sample size is big.
 
 # Week 4
 
