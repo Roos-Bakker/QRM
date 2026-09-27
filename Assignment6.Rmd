@@ -136,6 +136,7 @@ length(unique(movies$title))
 **Your Answer:**
 
 The dataset contains 808 observations and 19 variables. A subject is a
+The data set contains 808 observations and 19 variables. A subject is a
 individual movie and each observation corresponds to a movie, identified
 by the variable 'title'. Since there is no recurrence of the same movie
 name, the number of subjects is equal to the number of observations.
@@ -592,11 +593,8 @@ var_male ; var_female
 
 **Your Answer:**
 
-The variance of revenue is in million of dollars. It is approximately
 31,137.62 for movies with a director that is a male and approximately
 13,224.54 for movies with a female director. With a male director is the
-variance considerably larger, more than twice that of movies with a
-female director.
 
 *step d*
 
