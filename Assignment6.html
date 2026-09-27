@@ -2145,11 +2145,11 @@ and 8.56).</p>
 <p>However the histogram shows that it is not perfectly uniform, for
 example day 1 has big spike (61 movies) as well as day 15 and 25 which
 stand out above the blue line. There also seems to be a decline from day
-27 to 31, but that’s not a real deviation since not all month have those
-days. Only the spikes at day 1, 15 and 25 can be considered as real
-deviation. Studios likely release movies on more memorable ‘round’ dates
-for marketing reasons than just spreading release dates randomly. It
-looks more like a choice, not a random date, while still matching the
+27 to 31, but that’s not a real deviation since not all months have
+those days. Only the spikes at day 1, 15 and 25 can be considered as
+real deviation. Studios likely release movies on more memorable ‘round’
+dates for marketing reasons than just spreading release dates randomly.
+It looks more like a choice, not a random date, while still matching the
 overall mean and sd from the uniform prediction. # Week 3</p>
 <p>For the next part of the assignment, assume that the movies in your
 data frame are a random sample of a larger population of movies.</p>
@@ -2256,10 +2256,10 @@ var_male ; var_female</code></pre>
 <pre><code>## [1] 31137.62</code></pre>
 <pre><code>## [1] 13224.54</code></pre>
 <p><strong>Your Answer:</strong></p>
-<p>The variance of revenue is in million of dollars. It is approximalety
+<p>The variance of revenue is in million of dollars. It is approximately
 31,137.62 for movies with a director that is a male and approximately
-13,224.54 for movies with a female director. With a male director is the
-variance larger.</p>
+13,224.54 for movies with a female director. The variance is larger for
+movies with a male director.</p>
 <p><em>step d</em></p>
 <pre class="r"><code>#WRITE YOUR CODE HERE
 revenue_female &lt;- movies$revenue_m[which(movies$director_gender == &quot;female&quot;)]
@@ -2363,7 +2363,6 @@ mean) which lets us calculate the standard error (how uncertain the mean
 is). After that, we get the upper and lower bounds of the confidence
 interval, which you can see in the scatter plot (with caps on both sides
 to make it more clear).</p>
-<p>Write your formulated response here.</p>
 <p><em>step c</em></p>
 <pre class="r"><code>#WRITE YOUR CODE HERE
 verify &lt;- data.frame(release_year = mean_revenue$release_year,
