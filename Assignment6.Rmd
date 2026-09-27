@@ -486,14 +486,35 @@ the theoretical CLT predictions.
     whether the variable indeed follows this expected distribution. If
     the distribution deviates from the discrete uniform distribution,
     explain why this is the case. \textbf{[6 points]}
-    
-    ```{r}
-#WRITE YOUR CODE HERE
 
-```
+    ```{r}
+    # theoretical values
+    n <- 31
+    a <- 1
+    b <- 31
+    exp_mean <- (a+b) / 2
+    exp_sd <- sqrt((n^2 - 1) / 12)
+
+    exp_mean # 16
+    exp_sd # 8.94
+
+    # true mean and standard deviation in the data
+    mean(movies$release_day,na.rm = TRUE)
+    sd(movies$release_day,na.rm = TRUE) 
+    ```
 
 **Your Answer:**
 
+We would expect that the variable release_day follows a discrete uniform
+distribution. Based on factors (such as season and holiday periods) film
+studios choose a release date, but there is absolutely no reason to
+assume that a specific date in the month makes a real difference. It
+does not matter if they choose the 18th or the 19th. Because of this you
+would expect movies to be distributed fairly across the days of the
+month.
+
+If we assume that release_day is uniformly distributed over 1 to 31 then
+the mean is: (1 + 31) / 2 = 16 and the standard deviation is
 
 # Week 3
 
