@@ -393,7 +393,8 @@ movies_sample <-movies[sample(nrow(movies),25),]
 mean(movies_sample$vote_average)
 ```
 
-**Your Answer:** A random sample of 25 was drawn with the mean of 6.016
+**Your Answer:** 
+A random sample of 25 was drawn with the mean of 6.016
 for the vote_average. This is very close to the population mean from
 step a. The difference of 0.024 reflects the normal sampling variability
 and wont match the true population mean but will be quite representative
@@ -415,7 +416,8 @@ for (i in 1:100){
 head(sample_means)
 ```
 
-**Your Answer:** With a loop was used to draw 100 samples of 25 movies
+**Your Answer:** 
+With a loop was used to draw 100 samples of 25 movies
 each and the mean of vote_average was calculated and stored for each
 sample of the sample_means. The first six values of this vector are
 6.016, 6.172,5.856,6.112, 6.016, 5.696.
@@ -674,7 +676,8 @@ plot(revenue_by_year$release_year, revenue_by_year$revenue,
      col= "hotpink")
 ```
 
-**Your Answer:** A scatter plot was created showing the mean revenue per
+**Your Answer:**
+A scatter plot was created showing the mean revenue per
 release year and the plot does not show a clear consistent trend of
 increasing or decreasing over time but fluctuates up and down from year
 to year. Some of the highest average revenue occur around the 1990s and
@@ -710,7 +713,8 @@ arrows(mean_revenue$release_year, lower,
        angle=90, code=3, length=0.05, col="hotpink")
 ```
 
-**Your Answer:** In this scatter plot we create two extra steps on top
+**Your Answer:**
+In this scatter plot we create two extra steps on top
 of our first scatter plot. We calculate the standard deviation and we
 count the amount of movies per year (in addition to the mean) which lets
 us calculate the standard error (how uncertain the mean is). After that,
