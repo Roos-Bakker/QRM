@@ -484,14 +484,21 @@ the theoretical CLT predictions.
     whether the variable indeed follows this expected distribution. If
     the distribution deviates from the discrete uniform distribution,
     explain why this is the case. \textbf{[6 points]}
-    
-    ```{r}
-#WRITE YOUR CODE HERE
 
-```
+    ```{r}
+    #WRITE YOUR CODE HERE
+
+    ```
 
 **Your Answer:**
 
+I would expect that the variable release_day follows a discrete uniform
+distribution. Based on factors (such as season and holiday periods) film
+studios choose a release date, but there is absolutely no reason to
+assume that a specific date in the month makes a real difference. It
+does not matter if they choose the 18th or the 19th. Because of this you
+would expect movies to be distributed fairly across the days of the
+month.
 
 # Week 3
 
