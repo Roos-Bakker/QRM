@@ -822,67 +822,126 @@ g.  Who do you think is correct? Bob or Chantal? What would you advise
 
 ```{r}
 #WRITE YOUR CODE HERE
+model1<-lm(revenue ~ budget, data=movies)
 
+summary(model1)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+We estimate the model
+Revenue:$$\text{Revenue}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.$$
+
+by OLS. The summary of the estimated model consists of the intercept of
+-1.163e+07, the slope on budget=3.162 and R\^2=0.5994
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+##results used from the code from a 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The estimated value of β₁ (used from code a) is 3.162, where both
+variables are measured in dollars. This means that a dollars increase in
+a movie's budget is associated with an average increase in revenue of
+3.16 dollars (ceteris paribus) The estimate is statistically significant
+since t=34.73 and p\<0.001
 
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+b1 <- coef(summary(model1))["budget","Estimate"]
+se <- coef(summary(model1))["budget", "Std. Error"]
 
+# H0: beta1 <= 1
+t_stat <-(b1-1)/se
+t_stat
+
+#one-sided p-value (right tail)
+p_val <-pt(t_stat, df=df.residual(model1),lower.tail=FALSE)
+p_val
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Since Chantal claims that every dollar that is spend on production is
+more than offset by an increase in revenue, which means β₁\>1 we test:
+
+H0: β₁\<=1
+
+H1: β₁\> 1
+
+The t-statistic is t=23.75 with 806 degrees of freedom. The one-sided
+p-value is 3.28 x 10\^-95 which is very close to zero. That's why we
+reject H0 since p\<0.05, because there is strong statistical evidence
+that β₁ is larger than 1 and so the data supports Chantal's claim that
+an extra dollar of budget is associated with more than one extra dollar
+of revenue.
 
 *step d*
 
 ```{r}
 #WRITE YOUR CODE HERE
+#making the log-variables 
+movies$log_revenue <-ifelse(movies$revenue ==0, NA, log(movies$revenue))
+movies$log_budget <- ifelse(movies$budget ==0, NA, log(movies$budget))
 
+model2<-lm(log_revenue ~ log_budget, data=movies)
+
+summary(model2)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+We created the variables log_revenue and log_budget, assigning NA to the
+movies with a revenue or budget of zero. Plus we estimated the log-log
+model by OLS. The summary of the estimated model is shown above (by
+summary(model2))
 
 *step e*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+##results used from code from d 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The estimated value of β₁ is 1.030. This translates to β₁ being a
+elasticity in a log-log model, a 1% increase in a movie's budget is
+associated with an average increase in revenue of 1.03% (ceteris
+paribus). The estimate is statistically significant since the t value is
+22.52 and p\<0.001.
 
 *step f*
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+summary(model1)$r.squared
+summary(model2)$r.squared 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The first model (level-level) has a R^2^ of 0.599 and the second model
+(log-log) has a R^2^ of 0.495.Based on this alone, the level-level model
+seems to fit better, however can not really be compared directly for two
+reason. Firstly, the dependent variables are different (revenue in
+dollars vs log revenue), so the R^2^ values describe the share of
+variance of two different variables. The second reason is that the
+log-log model uses fewer observations (519 instead of 808) since movies
+with zero revenue or budget were dropped and set to NA.
+
+The residual standard errors (109,300,000 dollars vs 1.495 log points)
+are also not comparable because they are measured in different units.
+Therefore we cannot conclude that the level-level model fits better
+since the log-log model has the advantage that it reduces the skewness,
+the influence of extreme values and removes the zeros which most likely
+represents missing data than true zero revenues or budgets.
 
 *step g*
 
@@ -893,7 +952,24 @@ Write your formulated response here.
 
 **Your Answer:**
 
-Write your formulated response here.
+We mostly agree with Chantal since in the level-level model (discussed
+in question a) β₁=3.16 and we would reject H0:β₁\<=1 which shows that on
+average every extra dollar of budget goes together with more than one
+extra dollar of revenue. In the log-log model the elasticity is around
+1.03, which shows that revenue rises proportionally with budget and that
+the larger budgets don't come with lower revenue. So, Bob's claim that
+budgets are "out of hand" is not supported by the data.
+
+However, some caution is needed by this explanation since the models
+show correlation, not causal effects. The more expensive movies are
+often blockbusters with famous actors and larger marketing campaigns
+which can be a cause for the higher revenue. Also revenue is not profit
+because the marketing costs and the share that goes to cinemas is not
+included here. Lastly the average relationship is does not show all of
+the differences between the movies, so movies with high budgets still
+carry risk. That's why our advice would be to not cut on budgets and
+make cheaper movies, but to selectively evaluate them on profit than
+revenue alone and invest in those high-budget projects.
 
 2
 
