@@ -1043,34 +1043,68 @@ f.  One executive at the studio wants to time the release of the movie
 
 ```{r}
 #WRITE YOUR CODE HERE
+genre_table <- table(movies$genre)
+genre_table_sorted <- sort(genre_table, decreasing = TRUE)
+genre_table_sorted
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The frequency table shows that the three most common genres are drama:
+402 movies, comedy: 186 movies and thriller with 116 movies.
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+top3 <- names(genre_table_sorted)[1:3]
+top3
 
+movies$genre2 <- ifelse(movies$genre %in% top3,movies$genre, "Other")
+movies$genre2 <- as.factor(movies$genre2)
+
+table(movies$genre2)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The variable genre2 keeps Drama, Comedy and Thriller as separate
+categories and all the other categories are grouped together under the
+name "Other". The table shows 186 movies in Comedy, 402 in Drama, 104 in
+Other and 116 in Thriller. The total is 808 movies.
 
 *step c*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies_clean <- movies[movies$revenue > 0 & movies$budget > 0, ]
+
+movies_clean$log_revenue <- log(movies_clean$revenue)
+movies_clean$log_budget <- log(movies_clean$budget)
+
+model <- lm(log_revenue ~ log_budget + genre2 + release_year, data = movies_clean) 
+summary(model)
+
+levels(movies_clean$genre2)
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+Note that movies with a budget or revenue of zero were excluded, because
+log() undefined is for these values. This causes that the sample is
+reduced movies from 808 to 519.
+
+Comedy is the reference category.
+
+The estimated model is: log(revenue) = 9.098 + 1.001\*log(budget) -
+0.473\*genre2Drama - 0.014\*genre2Other - 0.322\*genre2Thriller -
+0.004\*release_year
+
+Our interpretation of each coefficient:
+
+Intercept (9.098, not significant):
 
 *step d*
 
