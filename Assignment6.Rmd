@@ -1121,18 +1121,49 @@ levels(movies_clean$genre2)
 **Your Answer:**
 
 Note that movies with a budget or revenue of zero were excluded, because
-log() undefined is for these values. This causes that the sample is
-reduced movies from 808 to 519.
+log() is undefined for these values. This causes the sample to be
+reduced from 808 to 519 movies.
 
 Comedy is the reference category.
 
-The estimated model is: log(revenue) = 9.098 + 1.001\*log(budget) -
+**The estimated model is**: log(revenue) = 9.098 + 1.001\*log(budget) -
 0.473\*genre2Drama - 0.014\*genre2Other - 0.322\*genre2Thriller -
 0.004\*release_year
 
-Our interpretation of each coefficient:
+**Our interpretation of each coefficient:**
 
-Intercept (9.098, not significant):
+**Intercept (9.098, not significant)**: the predicted log(revenue) for a
+Comedy movie when log(budget) and release_year are 0. This is not
+practically meaningful on its own.
+
+**log(budget) (1.001, p \< 0.001)**: this coefficient is highly
+significant. A 1% increase in budget is associated with an approximately
+1% increase in revenue, holding genre and release year constant. This
+indicates a almost proportional relationship between budget and revenue.
+
+**genre2Drama (-0.473, p = 0.004):** this is significant at the 1%
+level. Drama movies are predicted to have a log(revenue) that is 0.473
+lower than Comedy movies, holding budget and release year constant.
+
+**genre2Other (-0.014, p = 0.949):** This coefficient is not
+statistically significant. That means that there is no evidence that
+movies in the "Other" genre category differ from Comedy movies in terms
+of revenue, holding budget and release year constant.
+
+**genre2Thriller (-0.322, p = 0.110):** not statistically significant at
+the 5% level. Holding budget and release year constant, there is no
+strong evidence that Thriller movies differ in revenue compared to
+Comedy movies.
+
+**release_year (-0.004, p = 0.669):** This coefficient is not
+statistically significant, there is no evidence that the release is
+associated with revenue, holding budget and genre constant.
+
+The model has an R squared of 0.505, which means approximately 50.5% of
+the variation in log(revenue) is explained by budget, release year and
+genre. The overall model is highly significant. The results show that
+budget is the strongest predictor of revenue, while genre also plays a
+significant role, and release year has no meaningful effect.
 
 *step d*
 
