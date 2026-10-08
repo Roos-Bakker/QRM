@@ -987,23 +987,51 @@ b.  Using the insights from the scatterplot, your linear model, and your
 
 ```{r}
 #WRITE YOUR CODE HERE
-
+plot(movies$log_budget,movies$log_revenue,
+     main= "Log Revenue vs Log Budget",
+     xlab= "Log (Budget)",
+     ylab = "Log(Revenue)",
+     pch=19,
+     col= "pink")
+abline(model2, col = "blue", lwd = 2)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The scatter plot shows a positive and roughly linear association between
+log budget and log revenue: the movies with a higher budget tend to earn
+a higher revenue. The blue line is the fitted regression line, with an
+intercept of -0.05 and a slope of 1.03. This means that a 1% increase of
+budget is associated with a revenue that is 1.03% higher. The slope is
+highly significant (p\<2e-16). The R-squared is 0.495, so the budget
+explains half of the variation in log revenue. The points are spread
+quite widely around the line, which shows that other factors have a
+influence as well. The model uses 519 movies, because 289 movies with a
+budget or revenue of zero (NA) were left out.
 
 *step b*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies$pred_log_revenue<-predict(model2,newdata=movies)
+movies$resid<-movies$log_revenue-movies$pred_log_revenue
+
+head(movies[order(-movies$resid),c("title","budget","revenue","log_revenue","pred_log_revenue","resid")],5)
+
 
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+The movie that over performed is the Full Monty, which had a budget of
+\$3.5 million. The log revenue is 19.37, while the model predicted a log
+revenue of only 15.47. The residual (19.37-15.47) is 3.89, which means
+that the actual revenue was about 49 times higher than predicted since
+its a log-log model (e\^3.89≈49). The model expected around \$5 million
+in revenue, but the movie earned around \$258 million, which is far more
+than expected given its budget. Primer has an almost identical residual
+(3.89) but the prediction is less reliable because of a budget of only
+\$7000. Therefore we chose The Full Monty as the clearest example.
 
 # Week 5
 
