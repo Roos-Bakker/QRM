@@ -448,8 +448,6 @@ perfectly normally distributed.
 
 *Step e*
 
-**Your Answer:**
-
 ```{r}
 #WRITE YOUR CODE HERE
 population_mean <-mean(movies$vote_average)
@@ -535,7 +533,9 @@ those days. Only the spikes at day 1, 15 and 25 can be considered as
 real deviation. Studios likely release movies on more memorable 'round'
 dates for marketing reasons than just spreading release dates randomly.
 It looks more like a choice, not a random date, while still matching the
-overall mean and sd from the uniform prediction. \# Week 3
+overall mean and sd from the uniform prediction.
+
+# Week 3
 
 For the next part of the assignment, assume that the movies in your data
 frame are a random sample of a larger population of movies.
@@ -628,7 +628,9 @@ movies are directed by a male director.This gives a sample proportion of
 p-value is smaller than the significance level of 0.05 the null
 hypothesis is rejected.This provides strong evidence that the
 probability of a movie being directed by a male director is not equal to
-0.5 and that male directors are more common. *step c*
+0.5 and that male directors are more common.
+
+*step c*
 
 ```{r}
 movies$revenue_m <- movies$revenue / 1e6
@@ -927,14 +929,13 @@ summary(model2)$r.squared
 
 **Your Answer:**
 
-The first model (level-level) has a R^2^ of 0.599 and the second model
-(log-log) has a R^2^ of 0.495.Based on this alone, the level-level model
-seems to fit better, however can not really be compared directly for two
-reason. Firstly, the dependent variables are different (revenue in
-dollars vs log revenue), so the R^2^ values describe the share of
-variance of two different variables. The second reason is that the
-log-log model uses fewer observations (519 instead of 808) since movies
-with zero revenue or budget were dropped and set to NA.
+Based on R² alone, the level-level model seems to fit better (R^2^ of
+0.599) than the log-log model (R^2^ of 0.495). However, these values
+cannot be compared directly, for two reasons. First, the dependent
+variables are different (revenue in dollars vs log revenue), so the R^2^
+values describe the share of variance of two different variables.
+Second, the log-log model uses fewer observations (519 instead of 808)
+since movies with zero revenue or budget were dropped and set to NA.
 
 The residual standard errors (109,300,000 dollars vs 1.495 log points)
 are also not comparable because they are measured in different units.
@@ -942,6 +943,15 @@ Therefore we cannot conclude that the level-level model fits better
 since the log-log model has the advantage that it reduces the skewness,
 the influence of extreme values and removes the zeros which most likely
 represents missing data than true zero revenues or budgets.
+
+Because the models cannot be compared on R² , we judge them on other
+ground, and on those we consider the log model more appropriate. It
+reduces the skewness of the revenue and the influence of extreme values
+(like the Avengers), and it leaves out the zeros which most likely
+represent missing data than true zero revenues or budgets. The
+level-level model does include these zeros which may distort the
+estimate of β₁. Therefore, we conclude that the log-log model its R² is
+lower.
 
 *step g*
 
@@ -953,23 +963,26 @@ represents missing data than true zero revenues or budgets.
 **Your Answer:**
 
 We mostly agree with Chantal since in the level-level model (discussed
-in question a) β₁=3.16 and we would reject H0:β₁\<=1 which shows that on
+in question a) β₁=3.16 and we would reject H0:β₁\<=1. This means that on
 average every extra dollar of budget goes together with more than one
 extra dollar of revenue. In the log-log model the elasticity is around
-1.03, which shows that revenue rises proportionally with budget and that
-the larger budgets don't come with lower revenue. So, Bob's claim that
-budgets are "out of hand" is not supported by the data.
+1.03, which shows that revenue rises proportionally with budget. In both
+models higher budgets do not come with lower revenue. Therefore, Bob's
+claim that budgets are "out of hand" is not supported by the data.
 
-However, some caution is needed by this explanation since the models
-show correlation, not causal effects. The more expensive movies are
+However, some caution is needed with this interpretation. First, the
+models show correlation, not causation. The more expensive movies are
 often blockbusters with famous actors and larger marketing campaigns
-which can be a cause for the higher revenue. Also revenue is not profit
-because the marketing costs and the share that goes to cinemas is not
-included here. Lastly the average relationship is does not show all of
-the differences between the movies, so movies with high budgets still
-carry risk. That's why our advice would be to not cut on budgets and
-make cheaper movies, but to selectively evaluate them on profit than
-revenue alone and invest in those high-budget projects.
+which can be a cause for the higher revenue. Second, revenue is not
+profit: the marketing costs and the share that goes to cinemas is not
+included. An elasticity of 1.03 also means that revenue grows only as
+fast as budget, so a bigger budget does not automatically pay off.
+Third, the average relationship hides large differences between movies,
+so high-budget movies still carry risk.
+
+Our advice would therefore be not to cut budgets or to focus on cheaper
+movies, but to evaluate projects on expected profit rather than revenue
+alone, and to invest in selectively high budget projects.
 
 2
 
@@ -992,7 +1005,7 @@ plot(movies$log_budget,movies$log_revenue,
      xlab= "Log (Budget)",
      ylab = "Log(Revenue)",
      pch=19,
-     col= "pink")
+     col= "hotpink")
 abline(model2, col = "blue", lwd = 2)
 ```
 
