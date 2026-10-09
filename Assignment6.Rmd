@@ -1169,27 +1169,65 @@ significant role, and release year has no meaningful effect.
 
 ```{r}
 #WRITE YOUR CODE HERE
+model_d <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime, data = movies_clean)
+summary(model_d)
 
+new_movie <- data.frame(
+  log_budget = log(20000000),
+  genre2 = "Drama",
+  release_year = 2026,
+  runtime = 120
+)
+
+pred <- predict(model_d, newdata = new_movie, interval = "prediction", level = 0.90)
+exp(pred)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+For this step we used the model from part C, extended with runtime (120 minutes) for the movie, and predicted log revenue with predict(), which We transformed back to revenue with exp(). We used a 90% prediction interval. The predicted revenue of the movie is about 23.9 million (23.851.637). With 90% confidence, the revenue lies between 2.0 million (1.998.733) and 284.6 million (284.630.607). The interval is very wide because the model has an R^2 of 0.5056, so movies with the same budget, genre, year and runtime still differ a lot in revenue. After transforming back with exp(), this results in a very wide interval. 
 
 *step e*
 
 ```{r}
 #WRITE YOUR CODE HERE
+plot(movies_clean$log_budget, resid(model_d), ylim = c(-5, 5),
+     xlab = "log_budget", ylab = "Residuals", main = "Residuals vs log budget",
+     pch = 16, col = "hotpink")
+abline(h = 0, col = "black", lwd = 2)
 
+plot(movies_clean$release_year, resid(model_d), ylim = c(-5, 5),
+     xlab = "release_year", ylab = "Residuals", main = "Residuals vs release year",
+     pch = 16, col = "hotpink")
+abline(h = 0, col = "black", lwd = 2)
+
+plot(movies_clean$runtime, resid(model_d), ylim = c(-5, 5),
+     xlab = "runtime", ylab = "Residuals", main = "Residuals vs runtime",
+     pch = 16, col = "hotpink")
+abline(h = 0, col = "black", lwd = 2)
+
+boxplot(resid(model_d) ~ movies_clean$genre2, ylim = c(-5, 5),
+        xlab = "genre2", ylab = "Residuals", main = "Residuals vs genre",
+        col = "hotpink")
+abline(h = 0, col = "black", lwd = 2)
 ```
 
 **Your Answer:**
 
-Write your formulated response here.
+We plotted the residuals of the model against log budget, release year, runtime and genre. If the errors have constant variance (homoskedasticity), the residuals should be spread out evenly around zero. In the plots we do not see a heteroskedasticity shape (the spread does not get bigger or smaller as the variable changes). The spread looks about the same everywhere, except for a few large negative residuals. We find no clear evidence of heteroskedasticity.
 
 *step f*
 
 ```{r}
 #WRITE YOUR CODE HERE
+movies_clean$release_month <- factor(movies_clean$release_month)
 
+model_f <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime + release_month,
+              data = movies_clean)
+summary(model_f)
+
+anova(model_d, model_f)
 ```
+
+For this exercise we added the release month as a categorical variable to the model of part d, so the model now contains log budget, genre, release year, runtime and release month. To test whether the month of release matters, we used an F-test that compares the model with and without month (H0: all month coefficients are 0). The p-value is 0.020, which is below 0.05, so we reject H0. This means that the month of release has a significant effect on revenue. 
+We would advise the studio, regarding the timing of the release of the movie, to release it in November, December or May and to avoid September. We advise these months because they have the highest coefficients, which means that movies released in these months generate more revenue than movies released in January (reference month), holding the other variables constant. September has a negative coefficient, so movies released in September generate less revenue than movies released in January. However, when we look at each month separately, none of the differences is significant at the 5% level, so we cannot be sure which month is best.
