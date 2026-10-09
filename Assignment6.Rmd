@@ -798,7 +798,7 @@ even though the sample size is big.
     tells Bob that \`\`Every dollar we spend on movie production is more
     than offset by the increase in movie revenue''.
 
-<!-- -->
+
 
 a.  Set up a regression model to test Chantal's claim, and estimate it.
     That is, estimate:
@@ -937,13 +937,6 @@ values describe the share of variance of two different variables.
 Second, the log-log model uses fewer observations (519 instead of 808)
 since movies with zero revenue or budget were dropped and set to NA.
 
-The residual standard errors (109,300,000 dollars vs 1.495 log points)
-are also not comparable because they are measured in different units.
-Therefore we cannot conclude that the level-level model fits better
-since the log-log model has the advantage that it reduces the skewness,
-the influence of extreme values and removes the zeros which most likely
-represents missing data than true zero revenues or budgets.
-
 Because the models cannot be compared on R² , we judge them on other
 ground, and on those we consider the log model more appropriate. It
 reduces the skewness of the revenue and the influence of extreme values
@@ -1029,7 +1022,8 @@ budget or revenue of zero (NA) were left out.
 movies$pred_log_revenue<-predict(model2,newdata=movies)
 movies$resid<-movies$log_revenue-movies$pred_log_revenue
 
-head(movies[order(-movies$resid),c("title","budget","revenue","log_revenue","pred_log_revenue","resid")],5)
+print(head(movies[order(-movies$resid),c("title","budget","revenue","log_revenue","pred_log_revenue","resid")],5))
+
 
 
 ```
@@ -1204,6 +1198,7 @@ For this step we used the model from part C, extended with runtime (120 minutes)
 
 ```{r}
 #WRITE YOUR CODE HERE
+par(mfrow = c(2, 2))
 plot(movies_clean$log_budget, resid(model_d), ylim = c(-5, 5),
      xlab = "log_budget", ylab = "Residuals", main = "Residuals vs log budget",
      pch = 16, col = "hotpink")
@@ -1223,6 +1218,7 @@ boxplot(resid(model_d) ~ movies_clean$genre2, ylim = c(-5, 5),
         xlab = "genre2", ylab = "Residuals", main = "Residuals vs genre",
         col = "hotpink")
 abline(h = 0, col = "black", lwd = 2)
+par(mfrow = c(1, 1))
 ```
 
 **Your Answer:**
@@ -1237,7 +1233,8 @@ movies_clean$release_month <- factor(movies_clean$release_month)
 
 model_f <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime + release_month,
               data = movies_clean)
-summary(model_f)
+summary(model_f) 
+results="hide"
 
 anova(model_d, model_f)
 ```
