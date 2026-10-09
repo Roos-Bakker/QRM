@@ -839,11 +839,6 @@ by OLS. The summary of the estimated model consists of the intercept of
 
 *step b*
 
-```{r}
-#WRITE YOUR CODE HERE
-##results used from the code from a 
-```
-
 **Your Answer:**
 
 The estimated value of β₁ (used from code a) is 3.162, where both
@@ -943,15 +938,9 @@ reduces the skewness of the revenue and the influence of extreme values
 (like the Avengers), and it leaves out the zeros which most likely
 represent missing data than true zero revenues or budgets. The
 level-level model does include these zeros which may distort the
-estimate of β₁. Therefore, we conclude that the log-log model its R² is
-lower.
+estimate of β₁. Therefore, we conclude that the log-log model fits better eventough its R² is lower.
 
 *step g*
-
-```{r}
-#WRITE YOUR CODE HERE
-
-```
 
 **Your Answer:**
 
@@ -1177,7 +1166,7 @@ significant role, and release year has no meaningful effect.
 ```{r}
 #WRITE YOUR CODE HERE
 model_d <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime, data = movies_clean)
-summary(model_d)
+summary(model_d)$r.squared
 
 new_movie <- data.frame(
   log_budget = log(200000000),
@@ -1196,29 +1185,29 @@ For this step we used the model from part C, extended with runtime (120 minutes)
 
 *step e*
 
-```{r}
+```{r, fig.height=5, fig.width=7}
 #WRITE YOUR CODE HERE
-par(mfrow = c(2, 2))
-plot(movies_clean$log_budget, resid(model_d), ylim = c(-5, 5),
+
+plot(movies_clean$log_budget, resid(model_d),
      xlab = "log_budget", ylab = "Residuals", main = "Residuals vs log budget",
      pch = 16, col = "hotpink")
 abline(h = 0, col = "black", lwd = 2)
 
-plot(movies_clean$release_year, resid(model_d), ylim = c(-5, 5),
+plot(movies_clean$release_year, resid(model_d),
      xlab = "release_year", ylab = "Residuals", main = "Residuals vs release year",
      pch = 16, col = "hotpink")
 abline(h = 0, col = "black", lwd = 2)
 
-plot(movies_clean$runtime, resid(model_d), ylim = c(-5, 5),
+plot(movies_clean$runtime, resid(model_d),
      xlab = "runtime", ylab = "Residuals", main = "Residuals vs runtime",
      pch = 16, col = "hotpink")
 abline(h = 0, col = "black", lwd = 2)
 
-boxplot(resid(model_d) ~ movies_clean$genre2, ylim = c(-5, 5),
+boxplot(resid(model_d) ~ movies_clean$genre2,
         xlab = "genre2", ylab = "Residuals", main = "Residuals vs genre",
         col = "hotpink")
 abline(h = 0, col = "black", lwd = 2)
-par(mfrow = c(1, 1))
+
 ```
 
 **Your Answer:**
@@ -1233,8 +1222,8 @@ movies_clean$release_month <- factor(movies_clean$release_month)
 
 model_f <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime + release_month,
               data = movies_clean)
-summary(model_f) 
-results="hide"
+#only the month coefficients (January=refrence)
+round(summary(model_f)$coefficients[8:18,],3)
 
 anova(model_d, model_f)
 ```
