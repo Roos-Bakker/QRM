@@ -1180,7 +1180,7 @@ model_d <- lm(log_revenue ~ log_budget + genre2 + release_year + runtime, data =
 summary(model_d)
 
 new_movie <- data.frame(
-  log_budget = log(20000000),
+  log_budget = log(200000000),
   genre2 = "Drama",
   release_year = 2026,
   runtime = 120
@@ -1192,7 +1192,7 @@ exp(pred)
 
 **Your Answer:**
 
-For this step we used the model from part C, extended with runtime (120 minutes) for the movie, and predicted log revenue with predict(), which We transformed back to revenue with exp(). We used a 90% prediction interval. The predicted revenue of the movie is about 23.9 million (23.851.637). With 90% confidence, the revenue lies between 2.0 million (1.998.733) and 284.6 million (284.630.607). The interval is very wide because the model has an R^2 of 0.5056, so movies with the same budget, genre, year and runtime still differ a lot in revenue. After transforming back with exp(), this results in a very wide interval. 
+For this step we used the model from part C, extended with runtime (120 minutes) for the movie, and predicted log revenue with predict(), which We transformed back to revenue with exp(). We used a 90% prediction interval. The predicted revenue of the movie is about 234,4 million (234.411.504). The 90% prediction interval ranges from 19,5 million (19.507.130) to 2,82 billion (2.816.854.825). The interval is very wide because the model has an R^2 of 0.5056, so movies with the same budget, genre, year and runtime still differ a lot in revenue. After transforming back with exp(), this results in a very wide interval. 
 
 *step e*
 
