@@ -2803,7 +2803,6 @@ summary(model_d)</code></pre>
 ## Multiple R-squared:  0.5056, Adjusted R-squared:  0.4998 
 ## F-statistic: 87.26 on 6 and 512 DF,  p-value: &lt; 2.2e-16</code></pre>
 <pre class="r"><code>new_movie &lt;- data.frame(
-  log_budget = log(20000000),
   log_budget = log(200000000),
   genre2 = &quot;Drama&quot;,
   release_year = 2026,
@@ -2812,17 +2811,11 @@ summary(model_d)</code></pre>
 
 pred &lt;- predict(model_d, newdata = new_movie, interval = &quot;prediction&quot;, level = 0.90)
 exp(pred)</code></pre>
-<pre><code>##        fit     lwr       upr
-## 1 23851637 1998733 284630607</code></pre>
 <pre><code>##         fit      lwr        upr
 ## 1 234411504 19507130 2816854825</code></pre>
 <p><strong>Your Answer:</strong></p>
 <p>For this step we used the model from part C, extended with runtime
 (120 minutes) for the movie, and predicted log revenue with predict(),
-which We transformed back to revenue with exp(). We used a 90%
-prediction interval. The predicted revenue of the movie is about 23.9
-million (23.851.637). With 90% confidence, the revenue lies between 2.0
-million (1.998.733) and 284.6 million (284.630.607). The interval is
 which we transformed back to revenue with exp(). We used a 90%
 prediction interval. The predicted revenue of the movie is about 234,4
 million (234.411.504). The 90% prediction interval ranges from 19,5
@@ -2861,8 +2854,6 @@ year, runtime and genre. If the errors have constant variance
 (homoskedasticity), the residuals should be spread out evenly around
 zero. In the plots we do not see a heteroskedasticity shape (the spread
 does not get bigger or smaller as the variable changes). The spread
-looks about the same everywhere, except for a few large negative
-residuals. We find no clear evidence of heteroskedasticity.</p>
 looks roughly constant, although it may be slightly smaller at the
 highest budgets. Overall we find no clear evidence of
 heteroskedasticity.</p>
@@ -2920,19 +2911,6 @@ anova(model_d, model_f)</code></pre>
 variable to the model of part d, so the model now contains log budget,
 genre, release year, runtime and release month. To test whether the
 month of release matters, we used an F-test that compares the model with
-and without month (H0: all month coefficients are 0). The p-value is
-0.020, which is below 0.05, so we reject H0. This means that the month
-of release has a significant effect on revenue. We would advise the
-studio, regarding the timing of the release of the movie, to release it
-in November, December or May and to avoid September. We advise these
-months because they have the highest coefficients, which means that
-movies released in these months generate more revenue than movies
-released in January (reference month), holding the other variables
-constant. September has a negative coefficient, so movies released in
-September generate less revenue than movies released in January.
-However, when we look at each month separately, none of the differences
-is significant at the 5% level, so we cannot be sure which month is
-best.</p>
 and without month (H0: all month coefficients are 0, H1: at least one
 month coefficient is different from 0). The test gives F(11, 501) =
 2.08, with a p-value of 0.020. Since the p-value is below 0.05, we
