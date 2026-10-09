@@ -1192,7 +1192,7 @@ exp(pred)
 
 **Your Answer:**
 
-For this step we used the model from part C, extended with runtime (120 minutes) for the movie, and predicted log revenue with predict(), which We transformed back to revenue with exp(). We used a 90% prediction interval. The predicted revenue of the movie is about 234,4 million (234.411.504). The 90% prediction interval ranges from 19,5 million (19.507.130) to 2,82 billion (2.816.854.825). The interval is very wide because the model has an R^2 of 0.5056, so movies with the same budget, genre, year and runtime still differ a lot in revenue. After transforming back with exp(), this results in a very wide interval. 
+For this step we used the model from part C, extended with runtime (120 minutes) for the movie, and predicted log revenue with predict(), which we transformed back to revenue with exp(). We used a 90% prediction interval. The predicted revenue of the movie is about 234,4 million (234.411.504). The 90% prediction interval ranges from 19,5 million (19.507.130) to 2,82 billion (2.816.854.825). The interval is very wide because the model has an R^2 of 0.5056, so movies with the same budget, genre, year and runtime still differ a lot in revenue. After transforming back with exp(), this results in a very wide interval. 
 
 *step e*
 
@@ -1223,7 +1223,7 @@ par(mfrow = c(1, 1))
 
 **Your Answer:**
 
-We plotted the residuals of the model against log budget, release year, runtime and genre. If the errors have constant variance (homoskedasticity), the residuals should be spread out evenly around zero. In the plots we do not see a heteroskedasticity shape (the spread does not get bigger or smaller as the variable changes). The spread looks about the same everywhere, except for a few large negative residuals. We find no clear evidence of heteroskedasticity.
+We plotted the residuals of the model against log budget, release year, runtime and genre. If the errors have constant variance (homoskedasticity), the residuals should be spread out evenly around zero. In the plots we do not see a heteroskedasticity shape (the spread does not get bigger or smaller as the variable changes). The spread looks about the same everywhere, except for a few large negative residuals that fall outside the visible plot range. We find no clear evidence of heteroskedasticity.
 
 *step f*
 
