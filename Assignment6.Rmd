@@ -798,8 +798,6 @@ even though the sample size is big.
     tells Bob that \`\`Every dollar we spend on movie production is more
     than offset by the increase in movie revenue''.
 
-<!-- -->
-
 a.  Set up a regression model to test Chantal's claim, and estimate it.
     That is, estimate:
     $$\text{Revenue}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.$$
@@ -842,9 +840,9 @@ by OLS. The summary of the estimated model consists of the intercept of
 **Your Answer:**
 
 The estimated value of β₁ (used from code a) is 3.162, where both
-variables are measured in dollars. This means that a dollars increase in
-a movie's budget is associated with an average increase in revenue of
-3.16 dollars (ceteris paribus) The estimate is statistically significant
+variables are measured in dollars. This means that a one-dollars
+increase in a movie's budget is associated with an average increase in
+revenue of \$3.16 dollars. The estimate is statistically significant
 since t=34.73 and p\<0.001
 
 *step c*
@@ -908,11 +906,10 @@ summary(model2))
 
 **Your Answer:**
 
-The estimated value of β₁ is 1.030. This translates to β₁ being a
-elasticity in a log-log model, a 1% increase in a movie's budget is
-associated with an average increase in revenue of 1.03% (ceteris
-paribus). The estimate is statistically significant since the t value is
-22.52 and p\<0.001.
+The estimated value of β₁ is 1.030. This translates to β₁ being an
+elasticity in a log-log model: a 1% increase in a movie's budget is
+associated with an average increase in revenue of 1.03%. The estimate is
+statistically significant since the t value is 22.52 and p\<0.001.
 
 *step f*
 
@@ -942,6 +939,7 @@ estimate of β₁. Therefore, we conclude that the log-log model fits
 better eventough its R² is lower.
 
 *step g*
+
 ```{r}
 #WRITE YOUR CODE HERE
 ##test H0: beta=1 in the log-log model
@@ -953,22 +951,30 @@ t_log
 ##predicted revenue at average budget ($30 million)
 exp(predict(model2,newdata=data.frame(log_budget=log(30000000))))
 ```
+
 **Your Answer:**
 
 We mostly agree with Chantal since in the level-level model (discussed
 in question c) β₁=3.16 and we would reject H0:β₁\<=1. This means that on
 average every extra dollar of budget goes together with more than one
 extra dollar of revenue. In the log-log model the elasticity is around
-1.03, which is not significantly different from 1 (t=0.66, p=0.51). This shows that revenue rises proportionally with budget. At the average budget of around \$30 million the model predicts a revenue of around \$48millon, so an extra dollar of budget still goes together with about \$1.65 (1.03 x 48/30) of extra revenue. In both models higher budgets do not come with lower revenue. Therefore, Bob's claim that budgets are "out of hand" is not supported by the data.
+1.03, which is not significantly different from 1 (t=0.66, p=0.51). This
+shows that revenue rises proportionally with budget. At the average
+budget of around \$30 million the model predicts a revenue of around
+\$48millon, so an extra dollar of budget still goes together with about
+\$1.65 (1.03 x 48/30) of extra revenue. In both models higher budgets do
+not come with lower revenue. Therefore, Bob's claim that budgets are
+"out of hand" is not supported by the data.
 
 However, some caution is needed with this interpretation. First, the
 models show correlation, not causation. The more expensive movies are
 often blockbusters with famous actors and larger marketing campaigns
 which can be a cause for the higher revenue. Second, revenue is not
 profit: the marketing costs and the share that goes to cinemas is not
-included. An elasticity of about 1 does mean that bigger budgets give no advantage of scale, so revenue does not grow faster than budget. 
-Third, the average relationship hides large differences between movies,
-so high-budget movies still carry risk.
+included. An elasticity of about 1 does mean that bigger budgets give no
+advantage of scale, so revenue does not grow faster than budget. Third,
+the average relationship hides large differences between movies, so
+high-budget movies still carry risk.
 
 Our advice would therefore be not to cut budgets or to focus on cheaper
 movies, but to evaluate projects on expected profit rather than revenue
