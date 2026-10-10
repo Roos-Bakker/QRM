@@ -798,7 +798,7 @@ even though the sample size is big.
     tells Bob that \`\`Every dollar we spend on movie production is more
     than offset by the increase in movie revenue''.
 
-
+<!-- -->
 
 a.  Set up a regression model to test Chantal's claim, and estimate it.
     That is, estimate:
@@ -938,27 +938,35 @@ reduces the skewness of the revenue and the influence of extreme values
 (like the Avengers), and it leaves out the zeros which most likely
 represent missing data than true zero revenues or budgets. The
 level-level model does include these zeros which may distort the
-estimate of β₁. Therefore, we conclude that the log-log model fits better eventough its R² is lower.
+estimate of β₁. Therefore, we conclude that the log-log model fits
+better eventough its R² is lower.
 
 *step g*
-
+```{r}
+#WRITE YOUR CODE HERE
+##test H0: beta=1 in the log-log model
+b1_log<-coef(summary(model2))["log_budget","Estimate"]
+se_log<-coef(summary(model2))["log_budget","Std. Error"]
+t_log<-(b1_log-1)/se_log
+t_log
+2*pt(abs(t_log),df=df.residual(model2),lower.tail=FALSE)
+##predicted revenue at average budget ($30 million)
+exp(predict(model2,newdata=data.frame(log_budget=log(30000000))))
+```
 **Your Answer:**
 
 We mostly agree with Chantal since in the level-level model (discussed
-in question a) β₁=3.16 and we would reject H0:β₁\<=1. This means that on
+in question c) β₁=3.16 and we would reject H0:β₁\<=1. This means that on
 average every extra dollar of budget goes together with more than one
 extra dollar of revenue. In the log-log model the elasticity is around
-1.03, which shows that revenue rises proportionally with budget. In both
-models higher budgets do not come with lower revenue. Therefore, Bob's
-claim that budgets are "out of hand" is not supported by the data.
+1.03, which is not significantly different from 1 (t=0.66, p=0.51). This shows that revenue rises proportionally with budget. At the average budget of around \$30 million the model predicts a revenue of around \$48millon, so an extra dollar of budget still goes together with about \$1.65 (1.03 x 48/30) of extra revenue. In both models higher budgets do not come with lower revenue. Therefore, Bob's claim that budgets are "out of hand" is not supported by the data.
 
 However, some caution is needed with this interpretation. First, the
 models show correlation, not causation. The more expensive movies are
 often blockbusters with famous actors and larger marketing campaigns
 which can be a cause for the higher revenue. Second, revenue is not
 profit: the marketing costs and the share that goes to cinemas is not
-included. An elasticity of 1.03 also means that revenue grows only as
-fast as budget, so a bigger budget does not automatically pay off.
+included. An elasticity of about 1 does mean that bigger budgets give no advantage of scale, so revenue does not grow faster than budget. 
 Third, the average relationship hides large differences between movies,
 so high-budget movies still carry risk.
 
@@ -1181,7 +1189,19 @@ exp(pred)
 
 **Your Answer:**
 
-For this step we used the model from part C, extended with runtime (120 minutes) and a budget of 200,000,000 (we assume that 20,000,0000 given in the exercise is 200,000,000) for the drama movie released in 2026, and predicted log revenue with predict(), which we transformed back to revenue with exp(). We used a 90% prediction interval. The predicted revenue of the movie is about 234.4 million (234,411,504). The 90% prediction interval ranges from 19.5 million (19,507,130) to 2.82 billion (2,816,854,825). The interval is very wide because the model has an R^2 of 0.5056 and a large residual standard error (1.49 in logs), so movies with the same budget, genre, year and runtime still differ a lot in revenue. Also, a prediction interval is for one single movie, so it includes the random difference of that specific movie. After transforming back with exp(), this results in a very wide interval. 
+For this step we used the model from part C, extended with runtime (120
+minutes) and a budget of 200,000,000 (we assume that 20,000,0000 given
+in the exercise is 200,000,000) for the drama movie released in 2026,
+and predicted log revenue with predict(), which we transformed back to
+revenue with exp(). We used a 90% prediction interval. The predicted
+revenue of the movie is about 234.4 million (234,411,504). The 90%
+prediction interval ranges from 19.5 million (19,507,130) to 2.82
+billion (2,816,854,825). The interval is very wide because the model has
+an R\^2 of 0.5056 and a large residual standard error (1.49 in logs), so
+movies with the same budget, genre, year and runtime still differ a lot
+in revenue. Also, a prediction interval is for one single movie, so it
+includes the random difference of that specific movie. After
+transforming back with exp(), this results in a very wide interval.
 
 *step e*
 
@@ -1212,7 +1232,14 @@ abline(h = 0, col = "black", lwd = 2)
 
 **Your Answer:**
 
-We plotted the residuals of the model against log budget, release year, runtime and genre. If the errors have constant variance (homoskedasticity), the residuals should be spread out evenly around zero. In the plots we do not see a heteroskedasticity shape (the spread does not get bigger or smaller as the variable changes). The spread looks roughly constant, although it may be slightly smaller at the highest budgets. Overall we find no clear evidence of heteroskedasticity.
+We plotted the residuals of the model against log budget, release year,
+runtime and genre. If the errors have constant variance
+(homoskedasticity), the residuals should be spread out evenly around
+zero. In the plots we do not see a heteroskedasticity shape (the spread
+does not get bigger or smaller as the variable changes). The spread
+looks roughly constant, although it may be slightly smaller at the
+highest budgets. Overall we find no clear evidence of
+heteroskedasticity.
 
 *step f*
 
@@ -1231,5 +1258,25 @@ month_table
 anova(model_d, model_f)
 ```
 
-For this exercise we added the release month as a categorical variable to the model of part d, so the model now contains log budget, genre, release year, runtime and release month. To test whether the month of release matters, we used an F-test that compares the model with and without month (H0: all month coefficients are 0, H1: at least one month coefficient is different from 0). The test gives F(11, 501) = 2.08, with a p-value of 0.020. Since the p-value is below 0.05, we reject H0 in favor of H1. This means that adding release month significantly improves the model, suggesting that the month of release has a significant effect on revenue.
-We would advise the studio, regarding the timing of the release of the movie, to release it in November, December or May and to avoid September. We advise these months because they have the highest coefficients, which means that movies released in these months generate more revenue than movies released in January (reference month), holding the other variables constant. September has a negative coefficient, so movies released in September generate less revenue than movies released in January. The column Pct_diff shows the coefficients as a percentage difference in revenue compared to January. For example, a movie released in November earns about 55.8% more revenue than a movie released in January. However, when we look at each month separately, none of the differences is significant at the 5% level, so we cannot conclude with confidence that these are the best or worst months for a movie release. 
+For this exercise we added the release month as a categorical variable
+to the model of part d, so the model now contains log budget, genre,
+release year, runtime and release month. To test whether the month of
+release matters, we used an F-test that compares the model with and
+without month (H0: all month coefficients are 0, H1: at least one month
+coefficient is different from 0). The test gives F(11, 501) = 2.08, with
+a p-value of 0.020. Since the p-value is below 0.05, we reject H0 in
+favor of H1. This means that adding release month significantly improves
+the model, suggesting that the month of release has a significant effect
+on revenue. We would advise the studio, regarding the timing of the
+release of the movie, to release it in November, December or May and to
+avoid September. We advise these months because they have the highest
+coefficients, which means that movies released in these months generate
+more revenue than movies released in January (reference month), holding
+the other variables constant. September has a negative coefficient, so
+movies released in September generate less revenue than movies released
+in January. The column Pct_diff shows the coefficients as a percentage
+difference in revenue compared to January. For example, a movie released
+in November earns about 55.8% more revenue than a movie released in
+January. However, when we look at each month separately, none of the
+differences is significant at the 5% level, so we cannot conclude with
+confidence that these are the best or worst months for a movie release.
