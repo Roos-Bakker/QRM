@@ -798,6 +798,8 @@ even though the sample size is big.
     tells Bob that \`\`Every dollar we spend on movie production is more
     than offset by the increase in movie revenue''.
 
+<!-- -->
+
 a.  Set up a regression model to test Chantal's claim, and estimate it.
     That is, estimate:
     $$\text{Revenue}_i=\beta_0+\beta_1 \text{Budget}_i +\varepsilon_i.$$
@@ -1172,8 +1174,9 @@ associated with revenue, holding budget and genre constant.
 The model has an R squared of 0.505, which means approximately 50.5% of
 the variation in log(revenue) is explained by budget, release year and
 genre. The overall model is highly significant. The results show that
-budget is the strongest predictor of revenue, while genre also plays a
-significant role, and release year has no meaningful effect.
+budget is the strongest predictor of revenue. Genre matters mainly
+through the Drama category, which is associated with significantly lower
+revenue, while release year has no meaningful effect.
 
 *step d*
 
