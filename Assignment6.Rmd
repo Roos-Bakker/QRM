@@ -1155,7 +1155,9 @@ indicates a almost proportional relationship between budget and revenue.
 
 **genre2Drama (-0.473, p = 0.004):** this is significant at the 1%
 level. Drama movies are predicted to have a log(revenue) that is 0.473
-lower than Comedy movies, holding budget and release year constant.
+lower than Comedy movies, holding budget and release year constant. This
+means that on average drama films generate approximately (1 -
+e\^(-0.473)) x 100 % ≈ 37.7 % less revenue than comedy films.
 
 **genre2Other (-0.014, p = 0.949):** This coefficient is not
 statistically significant. That means that there is no evidence that
