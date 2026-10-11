@@ -1218,6 +1218,7 @@ transforming back with exp(), this results in a very wide interval.
 
 ```{r, fig.height=5, fig.width=7}
 #WRITE YOUR CODE HERE
+par(mfrow = c(2, 2))
 
 plot(movies_clean$log_budget, resid(model_d),
      xlab = "log_budget", ylab = "Residuals", main = "Residuals vs log budget",
@@ -1239,6 +1240,8 @@ boxplot(resid(model_d) ~ movies_clean$genre2,
         col = "hotpink")
 abline(h = 0, col = "black", lwd = 2)
 
+par(mfrow = c(1, 1))
+```
 ```
 
 **Your Answer:**
@@ -1246,11 +1249,7 @@ abline(h = 0, col = "black", lwd = 2)
 We plotted the residuals of the model against log budget, release year,
 runtime and genre. If the errors have constant variance
 (homoskedasticity), the residuals should be spread out evenly around
-zero. In the plots we do not see a heteroskedasticity shape (the spread
-does not get bigger or smaller as the variable changes). The spread
-looks roughly constant, although it may be slightly smaller at the
-highest budgets. Overall we find no clear evidence of
-heteroskedasticity.
+zero. In the plots we do not see a clear heteroskedasticity shape (the spread does not get bigger or smaller as the variable changes). The spread looks roughly constant, although it may be slightly smaller at the highest budgets. In all plots there are a few large negative residuals, which means that a few movies earned much less than the model predicted. These residuals are outliers, not a pattern in the spread. Overall we find no clear evidence of heteroskedasticity.
 
 *step f*
 
